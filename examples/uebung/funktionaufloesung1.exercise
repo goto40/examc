@@ -1,0 +1,59 @@
+GROUP uebung;
+EXERCISE funktionaufloesung1 {
+	TITLE: "Funtionsauflösung"
+	POINTS: 4
+	
+	LATEX
+	------
+	Folgendes Programm sei gegeben:
+	--------
+	CODE
+	-------
+#include <iostream>
+
+void g(float x)         { std::cout << "g1: f\n"; }
+void g(long double x)   { std::cout << "g2: ld\n"; }
+
+void h(double x)        { std::cout << "h1: d\n"; }
+void h(long double x)   { std::cout << "h2: ld\n"; }
+
+int main() {
+    float       f = 1.0;
+    double      d = 1.0;
+    long double ld = 1.0;
+    
+    g(f);
+    g(d);
+    g(ld);
+
+    h(f);
+    h(d);
+    h(ld);
+}
+	-------
+	
+	LATEX 
+	---------
+	Welche Funktionen werden gerufen?\\[1mm]
+	---------
+
+	LATEX
+	--------
+	\begin{tabularx}{\textwidth}{|m{3cm}|X|X|X|X|X|X|}
+	\hline
+	Zeile:& 14 & 15 & 16 & 18 & 19 & 20 \\
+	\hline
+	{\bfseries g1,g2,h1,h2}?
+	(Zeilen 2,3,6,7)\newline
+	oder {\bfseries FEHLER} & \solution{g1} & \solution{FEHLER} & \solution{g2} & \solution{h1} & \solution{h1} & \solution{h2} \\
+	\hline
+	\end{tabularx}\\[1mm]
+	--------
+
+	LATEX 
+	---------
+	(Platz für Ihre Nebenrechnungen:)
+	---------
+	
+	FREESPACE { HEIGHT: 6cm}
+}

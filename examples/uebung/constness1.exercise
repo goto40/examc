@@ -1,0 +1,39 @@
+GROUP uebung;
+EXERCISE constness1 {
+	TITLE: "Constness"
+	POINTS: 2
+	
+	LATEX 
+	---------------
+	Folgender Code sei gegeben:
+	-------------------
+	
+	CODE
+	-------------------
+struct P {
+    int x;
+    int getX() const { return x; }
+    void setX(int _x) { x=_x; }
+};
+
+int f(const P& p) {
+    return p.getX()*2;
+}
+void f(const P& p, int v) {
+    p.setX( v*2 );
+}
+	--------------------
+
+	LATEX 
+	---------------
+	Warum kompiliert der Code nicht?
+	-------------------
+	
+	FREESPACE EXAM {HEIGHT:5cm}
+	LATEX SOLUTION 
+	----------------
+	f bekommt eine const-Referenz auf ein P-Objekt und ruft eine
+	nicht-const Methode auf (setX).
+	----------------
+
+}

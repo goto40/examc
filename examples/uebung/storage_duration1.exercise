@@ -1,0 +1,55 @@
+GROUP uebung;
+
+EXERCISE storage_duration1 {
+	TITLE: "storage duration"
+	POINTS: 3
+	LATEX
+	-------
+	Folgendes Programm sei gegeben:
+	-------
+	CODE 
+	------------------------	
+#include <iostream>
+
+int global_cumulative_sum(const int &param) {
+    static int e=0;
+    e = e+param;
+    return e;
+}
+
+int a = 2;
+int main() {
+    int *b = new int(3);    
+    int c = global_cumulative_sum(a);
+    int d = global_cumulative_sum(*b);
+    
+    std::cout << c << "\n";
+    std::cout << d << "\n";
+    
+    delete b;
+}
+	--------------------------
+
+	LATEX
+	-------
+	\vspace*{3mm}
+	Was wird ausgeben?\\[10mm]
+	Zeile 15: \examOrSolution{\underline{\hspace*{10cm}}}{2 (je 0.5 Punkte)}\\[10mm]
+	Zeile 16: \examOrSolution{\underline{\hspace*{10cm}}}{5}\\[5mm]
+	------	
+	
+	LATEX
+	--------
+	\begin{tabularx}{\textwidth}{|m{5cm}|X|X|X|X|}
+	\hline
+	name $\rightarrow$\solution{(je 0.5 Punkte)}\newline Storag duration $\downarrow$& a & b & c und d & e \\
+	\hline
+	Static & \solution{X} & & & \solution{X} \\
+	\hline
+	Dynamic & & \solution{X} & & \\
+	\hline
+	Automatic & & & \solution{X} & \\
+	\hline
+	\end{tabularx}
+	--------
+}

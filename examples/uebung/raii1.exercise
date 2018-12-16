@@ -1,0 +1,90 @@
+GROUP uebung;
+
+EXERCISE raii1 {
+	TITLE: "RAII"
+	POINTS: 10
+	
+	LATEX
+	-------
+	Folgender Code sei gegeben: Eine Klasse Duck, die beim "quacken" immer ausgibt, wie oft sie schon gequakt hat.
+	-------
+	
+	CODE
+	-------
+#include <iostream>
+
+struct Duck {
+    int x=0;
+    void quack() { std::cout << x++ <<"-quack\n"; }
+};
+
+int main() {
+    Duck* d = new Duck();
+    d->quack();
+    d->quack();
+    d->quack();
+}
+	------
+	
+	LATEX
+	------
+	Dieser Code beinhaltet ein Speicherleck (das Objekt d in Zeile 9 wird nicht freigegeben).\\[3mm]
+	Schreiben Sie eine Klasse um einen Zeiger zu verwalten und um damit folgenden Code zu ermöglichen (Alternativ zu Zeile 8-13 im obigen Beispiel):
+	--------
+	
+	CODE
+	-------
+
+int main() {
+    Ptr<Duck> d{new Duck()};
+    d->quack();
+    d->quack();
+    d->quack();
+}
+--------
+
+	LATEX
+	------------
+	
+	Folgende Anforderungen sollen gelten.
+	\begin{itemize}
+	\item Definieren Sie mit Hilfe von {\bfseries Templates} eine Klasse "Ptr", so dass man diese Klasse "Ptr" für beliebige  Typen verwenden kann (z.B. für den Typ "Duck" im Beispiel).
+	\item Definieren Sie einen passenden {\bfseries Konstruktor}, der einen übergebenen Zeiger übernimmt (speichert und verwaltet).
+	\item Ein so erzeugtes "Ptr"-Objekt ist {\bfseries verantwortlich}, den {\bfseries verwalteten Speicher beim Zerstören} des entsprechenden "Ptr"-Objekts wieder {\bfseries freizugeben}.
+	\item Ein "Ptr"-Objekt darf {\bfseries nicht kopierbar oder verschiebbar} sein.
+	\newpage
+	\item Definieren Sie die Operatoren {\bfseries "operator-$>$"} um ein Zeiger-konformes Verhalten mittels 
+	"-$>$" zu imitieren (der "operator*" soll in dieser Aufgabe nicht betrachtet werden). Überlegen Sie mit Hilfe der folgenden Hilfestellung, was die Parameter und Rückgabe des Operatores sind.\\
+	{\bfseries Hilfestellung:} Aus dem C++ 14 Standard [over.ref]: {\itshape "operator-$>$ shall be a non-static member function taking no parameters. [...] An expression {\bfseries x-$>$m} is interpreted as {\bfseries (x.operator-$>$())-$>$m}"}
+	\end{itemize}
+	------------
+
+	FREESPACE EXAM {HEIGHT: 20cm}
+	CODE SOLUTION 
+	-------------
+	#include <iostream>
+	template<class T>
+	struct Ptr {
+		T* p;
+		Ptr(T* _p) : p(_p) {}
+		~Ptr() { delete p; }
+		T* operator->() {
+			return p;
+		}
+		Ptr(const Ptr&)=delete;
+		Ptr& operator=(const Ptr&)=delete;
+		Ptr(Ptr&&)=delete;
+		Ptr& operator=(Ptr&&)=delete;
+	};
+	struct Duck {
+		int x=0;
+		void quack() { std::cout << x++ <<"-quack\n"; }
+	};
+	int main() {
+		Ptr<Duck> d{new Duck()};
+		d->quack();
+		d->quack();
+		d->quack();
+	}
+	---------------
+}

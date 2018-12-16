@@ -1,0 +1,45 @@
+Model:
+    group=PGroup;
+
+PGroup:
+    'GROUP' name=ID ';'
+    exercises+=PExercise
+;
+
+
+FQN: ID('.'ID)*;
+PExercise:
+    'EXERCISE' name=ID
+    '{'
+    'TITLE' ':' title=STRING
+    'POINTS' ':' points=INT
+    content+=PContent*
+    '}'
+    ;
+
+PContent: PLatexContent|PPlantUmlContent|PCodeContent|PAsciiContent|PFreeSpaceContent|PImage;
+
+PImage: 'IMAGE' (printtype=PPrintType)? '{'
+    'FILE' ':' file=STRING
+    ('WIDTH' ':' width=MYFLOAT 'percent')?
+    '}'
+;
+PLatexContent: 'LATEX' (printtype=PPrintType)? text=PText;
+PPlantUmlContent: 'PLANTUML' (printtype=PPrintType)? text=PText;
+PCodeContent: 'CODE' (printtype=PPrintType)? text=PText;
+PAsciiContent: 'ASCII' (printtype=PPrintType)? text=PText;
+PFreeSpaceContent: 'FREESPACE' (printtype=PPrintType)? '{'
+    'HEIGHT' ':' height=MYFLOAT 'cm'
+    '}'
+;
+
+PText: PTextInline|PTextFile;
+PTextInline: text=PSTRING;
+PTextFile: 'FILE' ':' filename=STRING;
+
+PPrintType: "BOTH"|"EXAM"|"SOLUTION";
+PNewpageType: "NEWPAGE"|"NONEWPAGE";
+
+PSTRING: text=/(?ms)\-{4}\-*\s*$(.*?)^\s*\-{4}\-*\s*$/;
+MYFLOAT: /\d+(?:\.\d+)?/;
+MYINT: /\d+/;

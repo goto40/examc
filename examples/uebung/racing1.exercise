@@ -1,0 +1,18 @@
+GROUP uebung;
+
+EXERCISE racing1 {
+	TITLE: "Racing Condition"
+	POINTS: 2
+	
+	LATEX
+	---------------------------
+	Was ist eine Racing Condition?
+	---------------------------
+
+	FREESPACE EXAM { HEIGHT: 5cm } 
+	
+	LATEX SOLUTION
+	------------------
+	Endergebnis hängt von der Ausführungsreihenfolge der parallelen Programmsequenzen ab.
+	------------------
+}

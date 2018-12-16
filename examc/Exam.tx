@@ -1,0 +1,21 @@
+import Exercise
+
+PExam:
+    'EXAM' name=ID '{'
+        'TITLE' ':' title=STRING
+        (disableName ?= 'DISABLE_NAME')?
+        ('COURSE' ':' course=STRING)?
+        ('ADDITIONAL_FRONT_PAGE_INFO' ':' additional_front_page_info=STRING)?
+        'DATE' ':' date=STRING
+        'DURATION' ':' duration=MYINT 'min'
+        exercises_or_raw_content+=PExamContentContainer
+    '}'
+;
+
+PExamContentContainer: (newpagetype=PNewpageType)? content=PExamContent;
+
+PExamContent: PLatexContent|PExerciseRef;
+
+PExerciseRef:
+    'EXERCISE' ref=[PExercise|FQN]
+;

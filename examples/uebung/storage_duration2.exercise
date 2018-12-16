@@ -1,0 +1,47 @@
+GROUP uebung;
+
+EXERCISE storage_duration2 {
+	TITLE: "storage duration"
+	POINTS: 2
+	LATEX
+	-------
+	Folgender C++ Code ergibt beim Compilieren die Warnung
+	\begin{verbatim}
+	7 : <source>:7:15: warning: address of local variable 'r' 
+	                            returned [-Wreturn-local-addr]
+     Rectangle r{w,h};
+               ^
+	\end{verbatim}
+	-------
+CODE
+--------------------
+struct Rectangle {
+    float w,h;
+    float getArea() { return w*h; }
+};
+ 
+Rectangle *create(float w, float h) {
+    Rectangle r{w,h};
+    return &r;
+}
+------------------
+
+	LATEX
+	-------------
+	Erklären Sie warum diese Warnung einen Fehler darstellt, der den
+	Code unbrauchbar mach. Erläutern Sie dabei, was passiert wenn man den
+	Rückgabewert der Funktion "create" verwenden würde.
+	---------------
+	
+	FREESPACE EXAM {
+		HEIGHT: 5cm
+	}
+	
+	LATEX SOLUTION 
+	-------------
+	Das Problem ist dass der zurückgegebene Zeiger auf ein Objekt zeigt, dass
+	mit dem Verlassen der Funktion "create" schon zerstört ist. Wird dieser
+	Zeiger verwendet (auf das Objekt zugegriffen), so hat man undefiniertes Verhalten.
+	------------
+
+}

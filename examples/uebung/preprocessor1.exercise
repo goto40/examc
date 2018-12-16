@@ -1,0 +1,38 @@
+GROUP uebung;
+
+EXERCISE preprocessor1 {
+	TITLE: "Macros"
+	POINTS: 2
+	LATEX 
+	-----------------------
+	Was gibt folgendes Programm aus?
+	-----------------------
+	
+	CODE
+	--------------------------
+#include <iostream>
+
+#define M1(X,Y) X*Y
+#define M2(X,Y) (X)*(Y)
+#define M3(x,op,y) (x)op(y)
+#define INFO(info) std::cout << (info) << " at line " << __LINE__ << "\n"
+
+int main() {
+    std::cout << M1(8+1,1+8) << "\n";
+    std::cout << M2(8+1,1+8) << "\n";
+    INFO(M3(64,/,2));
+}
+	--------------------------
+
+	ASCII SOLUTION
+	---------------------
+17
+81
+32 at line 11
+	--------------------
+	
+	FREESPACE EXAM {
+		HEIGHT: 5cm
+	}
+
+}

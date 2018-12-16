@@ -1,0 +1,69 @@
+GROUP uebung;
+
+EXERCISE vererbung2 {
+	TITLE: "Vererbung"
+	POINTS: 4
+	LATEX
+	------
+	Folgendes Programm sei gegeben:
+	--------
+	CODE
+	-------
+#include <iostream>
+
+struct X {
+    int x;
+    X(int _x) : x(_x) { std::cout << "X("<<x<<");\n"; }
+    ~X() { std::cout << "~X();" << "\n"; }
+    void print() { std::cout << "X::x="<<x<<"\n"; }
+    virtual void whoAreYou() {std::cout << "I am X!\n"; }
+};
+
+struct P : public X {
+    int y;
+    P(int _x, int _y) : X(_x), y(_y) 
+                 { std::cout << "P("<<x<<","<<y<<")\n"; }
+    void print() 
+            { std::cout << "P(x,y)="<<x<<","<<y<< "\n"; }
+    virtual void whoAreYou() {std::cout << "I am P!\n"; }
+};
+
+int main() {
+    P *p1 = new P{1,2};
+    p1->print();
+    p1->whoAreYou();
+    delete p1;
+    
+    X *p2 = new P{3,4};
+    p2->print();    
+    p2->whoAreYou();
+    delete p2;
+}
+	--------
+	
+	LATEX
+	------------
+	Was wird ausgegeben (a) Zeilen 21-24 und (b) Zeilen 26-29? 
+	-----------
+	
+	FREESPACE EXAM { HEIGHT: 5cm}
+	LATEX SOLUTION
+	----------
+	\begin{multicols}{2}
+	\solution{(a)}\\
+		X(1);  \solution{0.25} \\
+		P(1,2) \solution{0.25} \\
+		P(x,y)=1,2 \solution{0.5} \\
+		I am P! \solution{0.5} \\
+		~X(); \solution{0.5}\\
+	\columnbreak
+	
+	\solution{(b)}\\
+		X(3); \solution{0.25} \\
+		P(3,4) \solution{0.25} \\
+		X::x=3 \solution{0.5} \\
+		I am P! \solution{0.5} \\
+		~X(); \solution{0.5}
+	\end{multicols}
+	------------
+}

@@ -1,0 +1,8 @@
+EXAM Probe02 {
+	TITLE: 'Probe 02'
+	DATE:  'WS17/18'
+	DURATION: 20min
+
+	EXERCISE uebung.templates1
+	EXERCISE uebung.templates2
+}

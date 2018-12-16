@@ -1,0 +1,46 @@
+GROUP uebung;
+
+EXERCISE templates1 {
+	TITLE: "Templates: Typ-Vergleich"
+	POINTS: 3
+	
+	LATEX
+	------------
+	Definieren Sie eine Template für eine
+	Struktur "TypesAreEqual"
+	mit zwei Template Parametern (Typen), dass
+	ein konstantes boolsches Feld "result" bereitstellt: 
+	Dieses Feld soll wahr sein, wenn die Typen
+	identisch sind.\\[5mm]
+	Folgender Code soll damit möglich sein:
+	------------
+	
+	CODE
+	-------------
+
+// TODO: define "TypesAreEqual"
+
+int main() {
+    static_assert( TypesAreEqual<double, float>::result 
+    		== false,  "static unit test");
+    static_assert( TypesAreEqual<float, float>::result  
+    		== true,   "static unit test");
+}
+	-------------
+	
+	FREESPACE
+	EXAM
+	{ HEIGHT: 12cm }
+	
+	CODE SOLUTION 
+	------------
+template<class A, class B> // 1 Punkt
+struct TypesAreEqual {
+    static constexpr bool result = false; // 1 Punkt fuer (const oder constexpr) und static
+};
+template<class A> // 1 Punkt
+struct TypesAreEqual<A,A> {
+    static constexpr bool result = true;
+};	
+	------------
+}

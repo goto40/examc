@@ -1,0 +1,10 @@
+EXAM Probe03 {
+	TITLE: 'Probe 03'
+	DATE:  'WS17/18'
+	DURATION: 25min
+	
+	EXERCISE uebung.vererbung2
+	EXERCISE uebung.funktionaufloesung1
+	EXERCISE uebung.mehrfach_vererbung1
+	EXERCISE uebung.raii1
+}

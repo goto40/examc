@@ -1,0 +1,10 @@
+EXAM Probe01 {
+	TITLE: 'Probe 01'
+	DATE:  'WS17/18'
+	DURATION: 11min
+	
+	EXERCISE uebung.preprocessor1
+	EXERCISE uebung.storage_duration1
+	EXERCISE uebung.storage_duration2
+	EXERCISE uebung.constness1
+}

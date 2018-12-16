@@ -1,0 +1,76 @@
+GROUP uebung;
+
+EXERCISE templates2 {
+	TITLE: "Templates und Verschiebe Operator"
+	POINTS: 15
+	
+	LATEX
+	------------
+	Definieren Sie eine Template-Klasse MyPtr$<T>$
+	die einen Zeiger "ptr" verwaltet (als Attribut der der Klasse "MyPtr").
+	Die Klasse "MyPtr" ist verantwortlich den Speicher für
+	das Objekt auf den der Zeiger zeigt {\bfseries anzulegen}
+	und beim Zerstören von "MyPtr" den Speicher wieder
+	{\bfseries freizugeben}.\\[2mm]
+	Der Konstruktor von "MyPtr" soll wiederum mittels
+	Templates die selben Attribute wie der Konstruktor für Objekte auf
+	die "ptr" zeigt erlauben (variadic templates).\\[2mm]
+	Instanzen von "MyPtr" sollen verschoben werden können, aber nicht
+	kopiert. Achten Sie auf eine korrekte Verschiebelogik.\\[2mm]
+	Folgender Code soll möglich sein:
+	------------
+	
+	CODE 
+	--------
+#include <memory>
+#include <iostream>
+
+// TODO define "MyPtr"
+
+struct Point { 
+    int x,y;
+    Point(int _x, int _y) : x(_x), y(_y) {}
+    ~Point() { std:: cout << x << "," << y << " died.\n";}
+};
+
+MyPtr<Point> createPoint(int x, int y) {
+    return MyPtr<Point>(x,y);
+}
+
+int main() {
+    MyPtr<Point> p1 = createPoint(5,6);
+    MyPtr<Point> p2 = createPoint(15,16);
+    p2.ptr->y=100;
+    //p1 = p2; // assignment does not compile
+} 
+// output:
+//  15,100 died.
+//  5,6 died.
+	----------
+	LATEX
+	------------
+	\newpage
+	-------------
+	
+	FREESPACE EXAM {HEIGHT:20cm}
+	CODE SOLUTION
+	-------------
+template<class T> // 1 Punkt
+struct MyPtr { 
+    T* ptr; // 1 Punkt
+    template<class ...P>
+    MyPtr(P... p) : ptr{new T{p...}} {}  // 4 Punkte
+    ~MyPtr() { if (ptr!=nullptr) delete ptr; } // 1 Punkt
+    MyPtr(const MyPtr&) = delete; // 1 Punkt
+    MyPtr& operator=(const MyPtr&) = delete; // 1 Punkt
+    MyPtr(MyPtr&& other) : ptr(nullptr) 
+    { *this=std::move(other); } // 1 Punkt
+    MyPtr& operator=(MyPtr&& other) { // 5 Punkte
+        if (this!=&other) {
+            delete ptr; // "delete nullptr" allowed
+            ptr = other.ptr; other.ptr=nullptr; 
+        }
+    };
+};
+    --------------
+}
