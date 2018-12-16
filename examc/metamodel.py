@@ -22,12 +22,12 @@ class PExam(ModelBase):
         from textx.scoping.tools import textx_isinstance
         mm = get_metamodel(self)
         lst = list(filter(
-            lambda x: textx_isinstance(x.content,mm['PExerciseRef']),
+            lambda x: textx_isinstance(x.content, mm['PExerciseRef']),
             self.exercises_or_raw_content))
-        return list(map( lambda x: x.content.ref, lst))
+        return list(map(lambda x: x.content.ref, lst))
 
     def get_points(self):
-        return sum(map(lambda x:x.points, self.get_exercises()))
+        return sum(map(lambda x: x.points, self.get_exercises()))
 
 
 def init_metamodel(path):
@@ -58,11 +58,12 @@ def init_metamodel(path):
     MetaModelProvider.add_metamodel("*.exercise", mm_exercise)
     MetaModelProvider.add_metamodel("*.exam", mm_exam)
 
-    return (mm_exam, global_repo_provider.load_models_in_model_repo().all_models)
+    return (mm_exam, global_repo_provider.load_models_in_model_repo().
+            all_models)
 
 
 def get_all(model_repo, what="PExercise"):
-    lst=[]
+    lst = []
     for m in model_repo.filename_to_model.values():
         lst = lst + get_children_of_type(what, m)
     return lst

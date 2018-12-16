@@ -1,4 +1,4 @@
-from setuptools import setup,find_packages
+from setuptools import setup, find_packages
 
 setup(name='examc',
       version='0.1',
@@ -9,7 +9,7 @@ setup(name='examc',
       license='MIT',
       packages=find_packages(),
       package_data={'': ['*.tx', '*.template', 'support_*_code/**/*']},
-      install_requires=["textx","arpeggio","jinja2"],
+      install_requires=["textx", "arpeggio", "jinja2"],
       tests_require=[
           'pytest',
       ],
@@ -20,6 +20,5 @@ setup(name='examc',
           ]
       },
       )
-
 
 # to play around without installing: do "export PYTHONPATH=."

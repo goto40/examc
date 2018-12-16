@@ -7,8 +7,9 @@ def examc():
     parser = argparse.ArgumentParser(description='examc')
     parser.add_argument('--in-folder', dest='in_folder', default=".", type=str,
                         help='folder where to look for model data')
-    parser.add_argument('-l', '--list-exercises', dest='list_exercises', default=True,
-                        action='store_true', help='show list of exercises')
+    parser.add_argument('-l', '--list-exercises', dest='list_exercises',
+                        default=True, action='store_true',
+                        help='show list of exercises')
 
     args = parser.parse_args()
     if args.list_exercises:
@@ -27,5 +28,5 @@ def show_list(path):
         ))
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     examc()
