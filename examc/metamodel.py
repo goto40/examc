@@ -1,34 +1,8 @@
-from textx import metamodel_from_file, get_children_of_type, get_metamodel
+from textx import metamodel_from_file, get_children_of_type
 import textx.scoping.providers as scoping_providers
 from textx.scoping import GlobalModelRepository, MetaModelProvider
 from os.path import dirname, abspath, join
-
-
-class ModelBase(object):
-    def __init__(self):
-        pass
-
-    def _init_xtextobj(self, **kwargs):
-        for k in kwargs.keys():
-            setattr(self, k, kwargs[k])
-
-
-class PExam(ModelBase):
-    def __init__(self, **kwargs):
-        super(PExam, self).__init__()
-        self._init_xtextobj(**kwargs)
-
-    def get_exercises(self):
-        from textx.scoping.tools import textx_isinstance
-        mm = get_metamodel(self)
-        lst = list(filter(
-            lambda x: textx_isinstance(x.content, mm['PExerciseRef']),
-            self.exercises_or_raw_content))
-        return list(map(lambda x: x.content.ref, lst))
-
-    def get_points(self):
-        return sum(map(lambda x: x.points, self.get_exercises()))
-
+import examc.mm_classes as cl
 
 def init_metamodel(path):
     this_folder = dirname(abspath(__file__))
@@ -49,7 +23,7 @@ def init_metamodel(path):
     mm_exam = metamodel_from_file(join(this_folder, "Exam.tx"),
                                   global_repository=global_repo,
                                   use_regexp_group=True,
-                                  classes=[PExam])
+                                  classes=[cl.PExam])
     mm_exam.register_scope_providers({
         "*.*": global_repo_provider,
     })
