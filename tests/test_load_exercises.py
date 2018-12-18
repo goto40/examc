@@ -3,7 +3,7 @@ from os.path import dirname, join
 
 
 def test_load_exercises():
-    mm, repo = init_metamodel(join(dirname(__file__), "..", "examples"))
+    mm, repo, config = init_metamodel(join(dirname(__file__), "..", "examples"))
 
     assert mm is not None
     assert repo is not None
@@ -19,7 +19,7 @@ def test_load_exercises():
 
 
 def test_load_exam():
-    mm, repo = init_metamodel(join(dirname(__file__), "..", "examples"))
+    mm, repo, config = init_metamodel(join(dirname(__file__), "..", "examples"))
 
     assert mm is not None
     assert repo is not None

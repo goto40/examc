@@ -1,5 +1,6 @@
 EXAM Probe02 {
 	TITLE: 'Probe 02'
+	COURSE: 'Programmieren 3 [A] INF3, ICS3'
 	DATE:  'WS17/18'
 	DURATION: 20min
 

@@ -4,8 +4,8 @@ PExam:
     'EXAM' name=ID '{'
         'TITLE' ':' title=STRING
         (disableName ?= 'DISABLE_NAME')?
-        ('COURSE' ':' course=STRING)?
-        ('ADDITIONAL_FRONT_PAGE_INFO' ':' additional_front_page_info=STRING)?
+        'COURSE' ':' course=STRING
+        ('ADDITIONAL_FRONT_PAGE_INFO' ':' additional_front_page_info=PSTRING)?
         'DATE' ':' date=STRING
         'DURATION' ':' duration=MYINT 'min'
         exercises_or_raw_content+=PExamContentContainer
@@ -14,7 +14,7 @@ PExam:
 
 PExamContentContainer: (newpagetype=PNewpageType)? content=PExamContent;
 
-PExamContent: PLatexContent|PExerciseRef;
+PExamContent: (direct = PLatexContent) | (exercise = PExerciseRef);
 
 PExerciseRef:
     'EXERCISE' ref=[PExercise|FQN]
