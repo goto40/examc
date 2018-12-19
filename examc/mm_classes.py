@@ -1,5 +1,6 @@
 from textx import get_metamodel, get_children_of_type
 
+
 class ModelBase(object):
     def __init__(self):
         pass
@@ -10,6 +11,15 @@ class ModelBase(object):
         if hasattr(self, "printtype"):
             if self.printtype is None:
                 self.printtype = "BOTH"
+        if hasattr(self, "newpagetype"):
+            if self.newpagetype is None:
+                self.newpagetype = "NEWPAGE"
+
+
+class PExamContentContainer(ModelBase):
+    def __init__(self, **kwargs):
+        super(PExamContentContainer, self).__init__()
+        self._init_xtextobj(**kwargs)
 
 
 class PExam(ModelBase):
@@ -18,21 +28,17 @@ class PExam(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def get_exercises(self):
-        from textx.scoping.tools import textx_isinstance
-        mm = get_metamodel(self)
         lst = list(filter(
             lambda x: x.content.exercise is not None,
             self.exercises_or_raw_content))
         return list(map(lambda x: x.content.exercise.ref, lst))
 
     def get_exercises_and_extra_contents(self):
-        from textx.scoping.tools import textx_isinstance
-        mm = get_metamodel(self)
         def mapper(x):
             if x.content.exercise is not None:
-                return x.content.exercise.ref
+                return x.newpagetype, x.content.exercise.ref
             else:
-                return x.content.direct
+                return x.newpagetype, x.content.direct
         return list(map(mapper, self.exercises_or_raw_content))
 
     def get_exercise_count(self):
@@ -57,7 +63,7 @@ class PExercise(ModelBase):
         return get_children_of_type('PPlantUmlContent', self)
 
     def get_num(self, exam):
-        return exam.get_exercises().index(self)
+        return exam.get_exercises().index(self)+1
 
 
 class PLatexContent(ModelBase):
@@ -66,7 +72,7 @@ class PLatexContent(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def generate(self):
-        return self.text
+        return self.text.text
 
 
 class PCodeContent(ModelBase):
@@ -114,7 +120,7 @@ class PPlantUmlContent(ModelBase):
     def generate(self):
         return f'''
 \\begin{{center}}
-\\includegraphics[width=0.75\\textwidth]{{ {self.basename()}.png }}
+\\includegraphics[width=0.75\\textwidth]{{{self.basename()}.png}}
 \\end{{center}}
         '''
 
@@ -125,7 +131,7 @@ class PFreeSpaceContent(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def generate(self):
-        return r'\karos{{\textwidth}}{{ {}cm}}'.format(self.height)
+        return r'\karos{{\textwidth}}{{{}cm}}'.format(self.height)
 
 
 class PImage(ModelBase):
@@ -136,6 +142,6 @@ class PImage(ModelBase):
     def generate(self):
         return f'''
 \\begin{{center}}
-\\includegraphics[width={self.localWidth}\\textwidth]{{ {self.fileSource} }}
+\\includegraphics[width={self.localWidth}\\textwidth]{{{self.fileSource}}}
 \\end{{center}}
         '''

@@ -15,6 +15,7 @@ def init_metamodel(path):
 
     all_classes = [
         cl.PExam,
+        cl.PExamContentContainer,
         cl.PExercise,
         cl.PAsciiContent,
         cl.PCodeContent,
@@ -46,9 +47,6 @@ def init_metamodel(path):
     mm_config = metamodel_from_file(join(this_folder, "Config.tx"),
                                       global_repository=global_repo,
                                       use_regexp_group=True)
-
-    print("PSTRING-exerc:" + str(mm_exercise['PSTRING'])+ "--" + str(mm_exercise))
-    print("PSTRING-exam:" + str(mm_exam['PSTRING'])+ "--" + str(mm_exam))
 
     MetaModelProvider.clear()
     MetaModelProvider.add_metamodel("*.exercise", mm_exercise)

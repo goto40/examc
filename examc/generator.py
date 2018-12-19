@@ -9,6 +9,7 @@ def generate_pu_files(exam, out_dir):
             with open(out_file_name, 'w') as f:
                 f.write(pu.render())
 
+
 def generate_tex(exam, config, out_file_name="src-gen/out.tex", generate_solution=False):
     this_folder = dirname(abspath(__file__))
     jinja_env = jinja2.Environment(
@@ -18,7 +19,9 @@ def generate_tex(exam, config, out_file_name="src-gen/out.tex", generate_solutio
     template = jinja_env.get_template('master.tex.template')
     with open(out_file_name, 'w') as f:
         f.write(template.render(exam=exam, config=config,
-                                solution=generate_solution))
+                                generate_solution=generate_solution,
+                                solution=str(generate_solution).lower()))
+
 
 def generate_script(exam, out_file_name):
     script = "#build\n"

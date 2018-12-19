@@ -41,16 +41,16 @@
 \renewcommand{\rmdefault}{ppl}
 
 \newboolean{solutionMode} %Deklaration
-\setboolean{solutionMode}{ {{solution}} } %Zuweisung
+\setboolean{solutionMode}{{"{"}}{{solution}}{{"}"}} %Zuweisung
 
 \newcommand{\solution}[1]{
 \ifthenelse{\boolean{solutionMode}}{
-        \textrm{\textcolor{blue}{ #1}}
+        \textrm{\textcolor{blue}{{"{"}}#1}}
 }{
 }}
 \newcommand{\examOrSolution}[2]{
 \ifthenelse{\boolean{solutionMode}}{
-        \textrm{\textcolor{blue}{ #2}}
+        \textrm{\textcolor{blue}{{"{"}}#2}}
 }{
         #1
 }}
@@ -137,8 +137,10 @@
 \vspace*{5mm}
 
 {{ exam.get_additional_front_page_info() }}
+
 {{ config.front_page_info.text }}
 { {{ config.processing_time }}: {{ exam.duration }} {{ config.minutes }} }\\
+
 {{ config.exercise_count }}: {{ exam.get_exercise_count() }}\\
 {{ config.max_points }}: {{ exam.get_points() }} {{ config.points }}\\
 \vspace*{5mm}
@@ -151,14 +153,24 @@
 
 {{ config.front_page_bottom.text }}
 
-{% for exercise in exam.get_exercises_and_extra_contents() %}
-{% if exercise.__class__.__name__ == 'PLatexContent' %}
+{% for newpagetype, exercise in exam.get_exercises_and_extra_contents() -%}
+{% if newpagetype=="NEWPAGE" -%}
+
+\newpage
+
+{% else %}
+
+\vspace*{5mm}
+\vfill
+
+{%endif%}
+{%- if exercise.__class__.__name__ == 'PLatexContent' -%}
 % ====================== PLatexContent
 {{ exercise.text.text }}
 {% else %}
 % ====================== Execise
 % ====================== {{ exercise.name }}
-% ====================== {{ exercise.content|length }}
+% ====================== {{ exercise.content|length }} {{newpagetype}}
 % ----------------
 \noindent
 \begin{tikzpicture}
@@ -178,22 +190,22 @@
 \end{tikzpicture}
 \hspace*{3mm}
 % ----------------
-{% for c in exercise.content %}
+{% for c in exercise.content -%}
 % === generate:
 % === {{ c.__class__ }}
 % === {{ c.printtype }}
-{%   if (solution and c.printtype=='SOLUTION') or ((not solution) and c.printtype=='EXAM') or c.printtype=='BOTH' %}
-{%     if (solution and c.printtype=='SOLUTION') %}
-\\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
-{%     endif %}
+{%   if (generate_solution and c.printtype=='SOLUTION') or ((not generate_solution) and c.printtype=='EXAM') or c.printtype=='BOTH' -%}
+{%     if (generate_solution and c.printtype=='SOLUTION') -%}
+\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
+{%-     endif %}
 {{ c.generate() }}
-{%     if (solution and c.printtype=='SOLUTION') %}
-\\end{mdframed}"
-{%     endif %}
-{%   endif %}
-{% endfor %}
+{%     if (generate_solution and c.printtype=='SOLUTION') -%}
+\end{mdframed}
+{%-     endif %}
+{%-   endif %}
+{%- endfor %}
 % ----------------
 {% endif %}
-{% endfor %}
+{%- endfor %}
 
 \end{document}
