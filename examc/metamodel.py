@@ -13,9 +13,7 @@ def init_metamodel(path):
     global_repo_provider.register_models(path+"/**/*.exercise")
     global_repo_provider.register_models(path+"/**/*.config")
 
-    exam_classes = [cl.PExam,
-                   ]
-    exercise_classes = [
+    all_classes = [
         cl.PExam,
         cl.PExercise,
         cl.PAsciiContent,
@@ -29,7 +27,7 @@ def init_metamodel(path):
     mm_exercise = metamodel_from_file(join(this_folder, "Exercise.tx"),
                                       global_repository=global_repo,
                                       use_regexp_group=True,
-                                      classes=exercise_classes)
+                                      classes=all_classes)
 
     mm_exercise.register_obj_processors({
         "MYFLOAT": lambda x: float(x),
@@ -39,8 +37,7 @@ def init_metamodel(path):
     mm_exam = metamodel_from_file(join(this_folder, "Exam.tx"),
                                   global_repository=global_repo,
                                   use_regexp_group=True,
-                                  referenced_metamodels=[mm_exercise],
-                                  classes=exam_classes)
+                                  classes=all_classes)
     mm_exam.register_scope_providers({
         "*.*": global_repo_provider,
     })

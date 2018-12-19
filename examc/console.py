@@ -1,7 +1,7 @@
 import argparse
 from examc.metamodel import init_metamodel, get_all
 from textx import get_model
-from examc.generator import generate_tex
+from examc.generator import generate_tex, generate_pu_files, generate_script
 from os.path import join, exists
 from os import mkdir
 
@@ -20,19 +20,25 @@ def examc():
     args = parser.parse_args()
     if args.generate_exam is not None:
         generate_exam(inpath=args.in_folder,
-                      outpath=args.out_folder,
+                      outpath_base=args.out_folder,
                       exam_fn=args.generate_exam)
     elif args.list_exercises:
         show_list(path=args.in_folder)
 
 
-def generate_exam(inpath, outpath, exam_fn):
+def generate_exam(inpath, outpath_base, exam_fn):
     mm, model_repo, config = init_metamodel(inpath)
     exam = mm.model_from_file(exam_fn)
+    outpath = join(outpath_base, exam.name)
     if not exists(outpath):
         mkdir(outpath)
     generate_tex(exam, config,
                  join(outpath, exam.name+".tex"), False)
+    generate_tex(exam, config,
+                 join(outpath, exam.name+"_solution.tex"), True)
+    generate_pu_files(exam, outpath)
+    generate_script(exam, join(outpath, "generate.sh"))
+
 
 def show_list(path):
     mm, model_repo, config = init_metamodel(path)

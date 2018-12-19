@@ -151,7 +151,11 @@
 
 {{ config.front_page_bottom.text }}
 
-{% for exercise in exam.get_exercises() %}
+{% for exercise in exam.get_exercises_and_extra_contents() %}
+{% if exercise.__class__.__name__ == 'PLatexContent' %}
+% ====================== PLatexContent
+{{ exercise.text.text }}
+{% else %}
 % ====================== Execise
 % ====================== {{ exercise.name }}
 % ====================== {{ exercise.content|length }}
@@ -189,6 +193,7 @@
 {%   endif %}
 {% endfor %}
 % ----------------
+{% endif %}
 {% endfor %}
 
 \end{document}
