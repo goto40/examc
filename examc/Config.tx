@@ -1,0 +1,14 @@
+import Exercise
+
+Config:
+    'NAME' ':' name=STRING
+    'FRONT_PAGE_INFO' ':' front_page_info=PSTRING
+    'PROCESSING_TIME' ':' processing_time=STRING
+    'MINUTES' ':' minutes=STRING
+    'EXERCISE_COUNT' ':' exercise_count=STRING
+    'MAX_POINTS' ':' max_points=STRING
+    'YOUR_POINTS' ':' your_points=STRING
+    'POINTS' ':' points=STRING
+    'FRONT_PAGE_BOTTOM' ':' front_page_bottom=PSTRING
+
+;

@@ -1,0 +1,194 @@
+\documentclass[a4paper,12pt,twoside]{article}
+\usepackage[inner=3cm,outer=2cm,top=2cm,bottom=2cm,includefoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+\usepackage{avant}
+\usepackage{ifthen}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{multicol}
+
+\setlength\parindent{0pt} % global noindent
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\#1}}
+\fancypagestyle{plain}
+\fancyhf{}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\footnotesize \itshape {{exam.title}} {{exam.course}}, {{exam.date}}}
+\cfoot{}
+\rfoot{\footnotesize \itshape Seite \thepage}
+
+\sloppy
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\ttdefault}{pcr}
+\renewcommand{\rmdefault}{ppl}
+
+\newboolean{solutionMode} %Deklaration
+\setboolean{solutionMode}{ {{solution}} } %Zuweisung
+
+\newcommand{\solution}[1]{
+\ifthenelse{\boolean{solutionMode}}{
+        \textrm{\textcolor{blue}{ #1}}
+}{
+}}
+\newcommand{\examOrSolution}[2]{
+\ifthenelse{\boolean{solutionMode}}{
+        \textrm{\textcolor{blue}{ #2}}
+}{
+        #1
+}}
+\newcommand{\CheckboxNo}{
+\examOrSolution{\LARGE \Square}{\LARGE \Square}}
+\newcommand{\CheckboxYes}{
+\examOrSolution{\LARGE \Square}{\LARGE  \XBox}}
+
+
+\lstdefinestyle{customcpp}{
+  belowcaptionskip=1\baselineskip,
+  numbers=left,
+  breaklines=true,
+  frame=single,
+  xleftmargin=\parindent,
+  language=C++,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries,%\color{green!40!black},
+  commentstyle=\itshape\color{gray},
+  identifierstyle=\itshape,%\color{blue},
+  stringstyle=\color{gray},
+  xleftmargin=10mm,
+  %framexleftmargin=8mm,
+  basicstyle=\normalsize\ttfamily
+}
+\lstdefinestyle{customtxt}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=single,
+  xleftmargin=\parindent,
+  language={},
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily
+}
+
+\newcommand{\karos}[2]{
+  \vspace*{3mm}
+  \begin{tikzpicture}
+    \draw[step=0.5cm,color=white!90!black] (0,0) grid (#1 ,#2);
+    \draw[color=black](0,0) rectangle (#1,#2);
+  \end{tikzpicture}
+}
+
+\newcommand{\solutiontext}[1]{
+\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
+#1
+\end{mdframed}
+}
+
+\begin{document}
+
+\begin{tabularx}{\textwidth}{|X|m{0.3\textwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+{% if exam.disableName %}
+\tiny ---
+{% else %}
+\tiny Name
+{% endif %}
+&\tiny Matr.-Nr. \tabularnewline
+\hline
+\rowcolor[gray]{0.99}
+\ifthenelse{\boolean{solutionMode}}{
+        \textrm{\textcolor{blue}{MUSTERLÖSUNG}}
+}{
+{% if exam.disableName %}
+---
+{% else %}
+\rule{0pt}{10mm}
+{% endif %}
+} &
+\tabularnewline
+\hline
+\end{tabularx}
+\vspace*{5mm}
+
+{
+\Large
+\bfseries {{exam.title}} {{exam.course}}\\
+}
+{{exam.date}}\\
+{{config.name}}\\
+\vspace*{5mm}
+
+{{ exam.get_additional_front_page_info() }}
+{{ config.front_page_info.text }}
+{ {{ config.processing_time }}: {{ exam.duration }} {{ config.minutes }} }\\
+{{ config.exercise_count }}: {{ exam.get_exercise_count() }}\\
+{{ config.max_points }}: {{ exam.get_points() }} {{ config.points }}\\
+\vspace*{5mm}
+
+\ifthenelse{\boolean{solutionMode}}{
+        \rule{0pt}{5mm}
+}{
+{{ config.your_points }}: \underline{\hspace*{5cm}} Note: \underline{\hspace*{5cm}}\\
+}
+
+{{ config.front_page_bottom.text }}
+
+{% for exercise in exam.get_exercises() %}
+% ====================== Execise
+% ====================== {{ exercise.name }}
+% ====================== {{ exercise.content|length }}
+% ----------------
+\noindent
+\begin{tikzpicture}
+\node (table) [inner sep=0pt] {
+%\begin{tabular}{m{0.07\textwidth}|m{0.5\textwidth}|m{0.2\textwidth}|m{0.2\textwidth}}
+\begin{tabularx}{\textwidth}{m{0.07\textwidth}|X|m{0.2\textwidth}|m{0.2\textwidth}}
+%\hline
+\rowcolor[gray]{0.9}
+\tiny \centering Aufgabe&\tiny Titel&\tiny \centering {{config.your_points}}&\tiny \centering {{ config.max_points }} \tabularnewline
+\hline
+\rowcolor[gray]{0.99}
+\centering \bfseries {{ exercise.get_num(exam) }} & {{ exercise.title }} & \rule{0pt}{7mm} & \centering \bfseries {{ exercise.points }} {{ config.points }} \tabularnewline
+%\hline
+\end{tabularx}
+};
+\draw [rounded corners=.5em] (table.north west) rectangle (table.south east);
+\end{tikzpicture}
+\hspace*{3mm}
+% ----------------
+{% for c in exercise.content %}
+% === generate:
+% === {{ c.__class__ }}
+% === {{ c.printtype }}
+{%   if (solution and c.printtype=='SOLUTION') or ((not solution) and c.printtype=='EXAM') or c.printtype=='BOTH' %}
+{%     if (solution and c.printtype=='SOLUTION') %}
+\\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
+{%     endif %}
+{{ c.generate() }}
+{%     if (solution and c.printtype=='SOLUTION') %}
+\\end{mdframed}"
+{%     endif %}
+{%   endif %}
+{% endfor %}
+% ----------------
+{% endfor %}
+
+\end{document}
