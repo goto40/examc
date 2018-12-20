@@ -189,6 +189,7 @@
 \draw [rounded corners=.5em] (table.north west) rectangle (table.south east);
 \end{tikzpicture}
 \hspace*{3mm}
+
 % ----------------
 {% for c in exercise.content -%}
 % === generate:
