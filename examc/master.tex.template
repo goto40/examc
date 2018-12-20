@@ -157,7 +157,6 @@
 {% if newpagetype=="NEWPAGE" -%}
 
 \newpage
-
 {% else %}
 
 \vspace*{5mm}
@@ -195,7 +194,7 @@
 % === {{ c.__class__ }}
 % === {{ c.printtype }}
 {%   if (generate_solution and c.printtype=='SOLUTION') or ((not generate_solution) and c.printtype=='EXAM') or c.printtype=='BOTH' -%}
-{%     if (generate_solution and c.printtype=='SOLUTION') -%}
+{%-     if (generate_solution and c.printtype=='SOLUTION') -%}
 \begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
 {%-     endif %}
 {{ c.generate() }}

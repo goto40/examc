@@ -36,6 +36,6 @@ PFreeSpaceContent: 'FREESPACE' (printtype=PPrintType)? '{'
 PPrintType: "BOTH"|"EXAM"|"SOLUTION";
 PNewpageType: "NEWPAGE"|"NONEWPAGE";
 
-PSTRING: text=/(?ms)\-{4}\-*\s*$(.*?)^\s*\-{4}\-*\s*$/;
+PSTRING: text=/(?ms)\-{4}\-*\s*\n(.*?)^\s*\-{4}\-*\s*\n/;
 MYFLOAT: /\d+(?:\.\d+)?/;
 MYINT: /\d+/;
