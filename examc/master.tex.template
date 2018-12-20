@@ -140,7 +140,6 @@
 
 {{ config.front_page_info.text }}
 { {{ config.processing_time }}: {{ exam.duration }} {{ config.minutes }} }\\
-
 {{ config.exercise_count }}: {{ exam.get_exercise_count() }}\\
 {{ config.max_points }}: {{ exam.get_points() }} {{ config.points }}\\
 \vspace*{5mm}
