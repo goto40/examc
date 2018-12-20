@@ -32,7 +32,7 @@ Example (some pages from an exam and its solution):
   * Configurations (language adaptations) are stored in *.config files (Grammar: see [Config.tx](examc/Config.tx)).
     See the example *.config files to see what you can specify.
   
-File structure:
+**File structure**:
 
   * A library of exercises may contain many *.exercise files and exactly one *.config file.
   * An exam needs a library of exercises with one config to compile.
@@ -130,7 +130,7 @@ Within the latex text, you can use
 	}
 
 	
-## setup (developer)
+## Setup (developer)
 
 Init virtual environment:
 
@@ -149,3 +149,7 @@ Check code style:
 
     $ flake8
 
+
+## Setup (user)
+
+work in progress (or: see .travis.yml)
