@@ -5,6 +5,7 @@ from os.path import dirname, abspath, join
 import examc.mm_classes as cl
 import examc.validation as validation
 
+
 def init_metamodel(path):
     this_folder = dirname(abspath(__file__))
 
@@ -51,8 +52,8 @@ def init_metamodel(path):
     })
 
     mm_config = metamodel_from_file(join(this_folder, "Config.tx"),
-                                      global_repository=global_repo,
-                                      use_regexp_group=True)
+                                    global_repository=global_repo,
+                                    use_regexp_group=True)
 
     MetaModelProvider.clear()
     MetaModelProvider.add_metamodel("*.exercise", mm_exercise)
@@ -65,7 +66,7 @@ def init_metamodel(path):
 
     if len(configs) > 1:
         raise Exception("found more than one config: {}".format(
-            "and ".join(map(lambda  x: x._tx_filename, configs))))
+            "and ".join(map(lambda x: x._tx_filename, configs))))
     if len(configs) != 1:
         raise Exception("found no config")
 

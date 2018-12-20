@@ -6,20 +6,24 @@ from examc.generator import generate_tex, generate_pu_files, generate_script
 from os.path import join, exists, abspath, dirname
 from os import makedirs
 
+
 def examc():
     parser = argparse.ArgumentParser(description='examc')
-    parser.add_argument('-I','--in-folder', dest='in_folder', default=None, type=str,
+    parser.add_argument('-I', '--in-folder', dest='in_folder',
+                        default=None, type=str,
                         help='folder where to look for model data')
-    parser.add_argument('-o', '--out-folder', dest='out_folder', default="src-gen", type=str,
+    parser.add_argument('-o', '--out-folder', dest='out_folder',
+                        default="src-gen", type=str,
                         help='out folder')
     parser.add_argument('-l', '--list-exercises', dest='list_exercises',
                         default=False, action='store_true',
                         help='show list of exercises')
-    parser.add_argument('-e', '--exam', dest='generate_exam', type=str, default=None,
-                        help='generate exam documents')
+    parser.add_argument('-e', '--exam', dest='generate_exam', type=str,
+                        default=None, help='generate exam documents')
     parser.add_argument('-x', '--execute-latex', dest='execute_latex',
                         action='store_true', default=False,
-                        help='execute latex after document generation (only applicable with -e)')
+                        help='execute latex after document generation"\
+                             "(only applicable with -e)')
 
     args = parser.parse_args()
     if args.generate_exam is not None:

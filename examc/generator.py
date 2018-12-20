@@ -10,7 +10,8 @@ def generate_pu_files(exam, out_dir):
                 f.write(pu.render())
 
 
-def generate_tex(exam, config, out_file_name="src-gen/out.tex", generate_solution=False):
+def generate_tex(exam, config, out_file_name="src-gen/out.tex",
+                 generate_solution=False):
     this_folder = dirname(abspath(__file__))
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(this_folder),
@@ -25,7 +26,7 @@ def generate_tex(exam, config, out_file_name="src-gen/out.tex", generate_solutio
 
 def generate_script(exam, out_file_name):
     script = "#build\n"
-    for exercise in  exam.get_exercises():
+    for exercise in exam.get_exercises():
         for pu in exercise.get_pu_contents():
             script = script + f"plantuml {pu.basename()}.pu && \\"
     script = script + f'''

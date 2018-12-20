@@ -22,9 +22,8 @@ def check_exam(exam):
     for exercise_ref in get_children_of_type('PExerciseRef', exam):
         exercise = exercise_ref.ref
         if len(list(filter(
-                lambda x: x==exercise, exam.get_exercises()))) > 1:
+                lambda x: x == exercise, exam.get_exercises()))) > 1:
             raise exceptions.TextXSemanticError(
                 'exercise {} used more than once'.format(
                     exercise.name
                 ), *get_location(exercise_ref))
-
