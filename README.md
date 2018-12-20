@@ -12,11 +12,8 @@ you can generate an exam and a solution document.
 
 Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
 
-Example (some pages form an exam):
-![](doc/images/example.png)
-
-Example (some pages form an exam solution):
-![](doc/images/example_solution.png)
+Example (some pages form an exam and its solution):
+![](doc/images/example_both.png)
 
 ## Features
 
