@@ -1,0 +1,8 @@
+EXAM Exam01 {
+	TITLE: 'TITLE'
+	COURSE: 'COURSE'
+	DATE:  'DATE'
+	DURATION: 5min
+	
+	EXERCISE exercises.constness1
+}

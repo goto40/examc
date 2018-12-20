@@ -11,6 +11,13 @@ Example (some pages form an exam):
 Example (some pages form an exam solution):
 ![](doc/images/example_solution.png)
 
+## Usage
+
+    $ examc --help
+    $ examc -I examples_en -e examples_en/Exam01.exam
+
+Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
+
 ## Features
 
   * Collect exercises.
@@ -44,7 +51,7 @@ Examples:
 
 ### Images
 
-    IMAGE FILE: "img.png" WIDTH: 80percent    
+    IMAGE { FILE: "img.jpg" WIDTH: 66percent }
 
 ### PlantUML (http://www.plantUML.com)
 
@@ -101,6 +108,3 @@ Check code style:
 
     $ flake8
 
-## setup (user / exam designer)
-
-    $ examc --help

@@ -17,6 +17,8 @@
 \usepackage{ifthen}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{multicol}
+\usepackage{lastpage}
+{{config.additional_latex_stuff.text}}
 
 \setlength\parindent{0pt} % global noindent
 
@@ -29,7 +31,7 @@
 \rhead{}
 \lfoot{\footnotesize \itshape {{exam.title}} {{exam.course}}, {{exam.date}}}
 \cfoot{}
-\rfoot{\footnotesize \itshape Seite \thepage}
+\rfoot{\footnotesize \itshape {{config.page}}: \thepage / \pageref{LastPage}}
 
 \sloppy
 
@@ -109,13 +111,13 @@
 {% if exam.disableName %}
 \tiny ---
 {% else %}
-\tiny Name
+\tiny {{config.name}}
 {% endif %}
-&\tiny Matr.-Nr. \tabularnewline
+&\tiny {{config.id}} \tabularnewline
 \hline
 \rowcolor[gray]{0.99}
 \ifthenelse{\boolean{solutionMode}}{
-        \textrm{\textcolor{blue}{MUSTERLÖSUNG}}
+        \textrm{\textcolor{blue}{{"{"}}{{config.solution_title}}{{"}"}}}
 }{
 {% if exam.disableName %}
 ---
@@ -133,7 +135,7 @@
 \bfseries {{exam.title}} {{exam.course}}\\
 }
 {{exam.date}}\\
-{{config.name}}\\
+{{config.your_name}}\\
 \vspace*{5mm}
 
 {{ exam.get_additional_front_page_info() }}
@@ -177,7 +179,7 @@
 \begin{tabularx}{\textwidth}{m{0.07\textwidth}|X|m{0.2\textwidth}|m{0.2\textwidth}}
 %\hline
 \rowcolor[gray]{0.9}
-\tiny \centering Aufgabe&\tiny Titel&\tiny \centering {{config.your_points}}&\tiny \centering {{ config.max_points }} \tabularnewline
+\tiny \centering {{config.exercise}}&\tiny {{config.title}}&\tiny \centering {{config.your_points}}&\tiny \centering {{ config.max_points }} \tabularnewline
 \hline
 \rowcolor[gray]{0.99}
 \centering \bfseries {{ exercise.get_num(exam) }} & {{ exercise.title }} & \rule{0pt}{7mm} & \centering \bfseries {{ exercise.points }} {{ config.points }} \tabularnewline

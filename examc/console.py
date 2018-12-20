@@ -7,7 +7,7 @@ from os import mkdir
 
 def examc():
     parser = argparse.ArgumentParser(description='examc')
-    parser.add_argument('--in-folder', dest='in_folder', default=".", type=str,
+    parser.add_argument('-I','--in-folder', dest='in_folder', default=".", type=str,
                         help='folder where to look for model data')
     parser.add_argument('-o', '--out-folder', dest='out_folder', default="src-gen", type=str,
                         help='out folder')

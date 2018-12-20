@@ -30,6 +30,8 @@ def generate_script(exam, out_file_name):
             script = script + f"plantuml {pu.basename()}.pu && \\"
     script = script + f'''
 pdflatex {exam.name}.tex && \
+pdflatex {exam.name}.tex && \
+pdflatex {exam.name}_solution.tex && \
 pdflatex {exam.name}_solution.tex && \
 xdg-open {exam.name}.pdf && \
 xdg-open {exam.name}_solution.pdf'''

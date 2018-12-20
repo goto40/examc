@@ -1,7 +1,7 @@
 import Exercise
 
 Config:
-    'NAME' ':' name=STRING
+    'YOUR_NAME' ':' your_name=STRING
     'FRONT_PAGE_INFO' ':' front_page_info=PSTRING
     'PROCESSING_TIME' ':' processing_time=STRING
     'MINUTES' ':' minutes=STRING
@@ -10,5 +10,11 @@ Config:
     'YOUR_POINTS' ':' your_points=STRING
     'POINTS' ':' points=STRING
     'FRONT_PAGE_BOTTOM' ':' front_page_bottom=PSTRING
-
+    'PAGE' ':' page=STRING
+    'SOLUTION_TITLE' ':' solution_title=STRING
+    'EXERCISE' ':' exercise=STRING
+    'TITLE' ':' title=STRING
+    'NAME' ':' name=STRING
+    'ID' ':' id=STRING
+    'ADDITIONAL_LATEX_STUFF' ':' additional_latex_stuff=PSTRING
 ;

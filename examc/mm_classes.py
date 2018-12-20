@@ -1,5 +1,5 @@
-from textx import get_metamodel, get_children_of_type
-
+from textx import get_model, get_children_of_type
+from os.path import join, dirname, abspath
 
 class ModelBase(object):
     def __init__(self):
@@ -139,9 +139,12 @@ class PImage(ModelBase):
         super(PImage, self).__init__()
         self._init_xtextobj(**kwargs)
 
+    def get_filename(self):
+        return join(abspath(dirname(get_model(self)._tx_filename)),self.file)
+
     def generate(self):
         return f'''
 \\begin{{center}}
-\\includegraphics[width={self.localWidth}\\textwidth]{{{self.fileSource}}}
+\\includegraphics[width={self.width/100.0}\\textwidth]{{{self.get_filename()}}}
 \\end{{center}}
         '''

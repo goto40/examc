@@ -4,13 +4,15 @@ from textx import get_children_of_type
 
 
 def check_exam(exam):
-    if exam.duration < exam.get_points():
+    min_dur = exam.get_points()
+    if exam.duration < min_dur:
         raise exceptions.TextXSemanticError(
             'duration ({}) too short (< sumPoints {})'.format(
               exam.duration, exam.get_points()
             ), *get_location(exam))
 
-    max_dur = exam.get_points() * 100 / 80;
+    max_dur = exam.get_points() * 100 / 80
+    max_dur = max(max_dur, exam.get_points()+5)
     if exam.duration > max_dur:
         raise exceptions.TextXSemanticError(
             'duration ({}) too long (> f(sumPoints) {})'.format(

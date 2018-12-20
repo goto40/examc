@@ -1,0 +1,46 @@
+GROUP exercises;
+EXERCISE constness1 {
+	TITLE: "Constness"
+	POINTS: 2
+	
+	LATEX 
+	---------------
+	The following code is given:
+	-------------------
+	
+	CODE
+	-------------------
+struct P {
+    int x;
+    int getX() const { return x; }
+    void setX(int _x) { x=_x; }
+};
+
+int f(const P& p) {
+    return p.getX()*2;
+}
+void f(const P& p, int v) {
+    p.setX( v*2 );
+}
+	--------------------
+
+    LATEX
+    --------------------
+    Example image (to illustrate the IMAGE keyword):
+    ---------------------
+
+    IMAGE { FILE: "img.jpg" WIDTH: 33 percent }
+
+	LATEX 
+	---------------
+	Why is the code not compiling?
+	-------------------
+	
+	FREESPACE EXAM {HEIGHT:5cm}
+	LATEX SOLUTION 
+	----------------
+	f gets a const reference to a P objekt and calls a
+	non-const method of it (setX).
+	----------------
+
+}
