@@ -133,8 +133,11 @@ Init virtual environment:
     $ source ./venv/bin/activate
     $ pip install -r requirements_dev.txt 
 
+Note: you need the current master of textX to work with this DSL.
+
 Run the tests:
 
+    $ export PYTHONPATH=.
     $ py.test tests
     
 Check code style:

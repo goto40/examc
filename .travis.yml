@@ -15,5 +15,6 @@ before_install:
 install:
     - python setup.py install
 script:
+    - export PYTHONPATH=.
     - py.test tests
 
