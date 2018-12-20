@@ -28,6 +28,9 @@ File structure:
   * A library of exercises may contain many *.exercise files and exactly one *.config file.
   * An exam needs a library of exercises with one config to compile.
 
+Examples:
+  * A library is given in [examples/uebung](examples/uebung).
+  * Some exams using this library are given in [examples](examples).
 
 ### Latex code
 
