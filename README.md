@@ -8,11 +8,15 @@ you can generate an exam and a solution document.
 ## Usage
 
     $ examc --help
-    $ examc -I examples_en -e examples_en/Exam01.exam
+    $ examc -e examples_en/Exam01.exam
+
+Or (also executes latex and opens the PDF):    
+    
+    $ examc -x -e examples_en/Exam01.exam
 
 Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
 
-Example (some pages form an exam and its solution):
+Example (some pages from an exam and its solution):
 ![](doc/images/example_both.png)
 
 ## Features

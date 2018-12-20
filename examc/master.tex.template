@@ -149,7 +149,7 @@
 \ifthenelse{\boolean{solutionMode}}{
         \rule{0pt}{5mm}
 }{
-{{ config.your_points }}: \underline{\hspace*{5cm}} Note: \underline{\hspace*{5cm}}\\
+{{ config.your_points }}: \underline{\hspace*{5cm}} {{config.grade}}: \underline{\hspace*{5cm}}\\
 }
 
 {{ config.front_page_bottom.text }}

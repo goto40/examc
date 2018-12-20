@@ -16,5 +16,6 @@ Config:
     'TITLE' ':' title=STRING
     'NAME' ':' name=STRING
     'ID' ':' id=STRING
+    'GRADE' ':' grade=STRING
     'ADDITIONAL_LATEX_STUFF' ':' additional_latex_stuff=PSTRING
 ;
