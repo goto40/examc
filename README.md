@@ -149,6 +149,11 @@ Check code style:
 
     $ flake8
 
+Run examc (without installing)
+
+    $ export PYTHONPATH=.
+    $ python examc/console.py --help
+    $ python examc/console.py -x -e examples/Probe02.exam
 
 ## Setup (user)
 
