@@ -31,7 +31,7 @@
 \rhead{}
 \lfoot{\footnotesize \itshape {{exam.title}} {{exam.course}}, {{exam.date}}}
 \cfoot{}
-\rfoot{\footnotesize \itshape {{config.page}}: \thepage / \pageref{LastPage}}
+\rfoot{\footnotesize \itshape {{config.page}}: \thepage /\pageref{LastPage}}
 
 \sloppy
 
@@ -189,7 +189,7 @@
 \draw [rounded corners=.5em] (table.north west) rectangle (table.south east);
 \end{tikzpicture}
 \hspace*{3mm}
-convert
+
 % ----------------
 {% for c in exercise.content -%}
 % === generate:

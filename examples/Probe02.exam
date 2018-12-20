@@ -1,5 +1,6 @@
 EXAM Probe02 {
 	TITLE: 'Probe 02'
+	DISABLE_NAME
 	COURSE: 'Test Course'
 	DATE:  'WS17/18'
 	DURATION: 20min
