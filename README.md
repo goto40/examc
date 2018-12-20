@@ -35,9 +35,12 @@ File structure:
   * A library of exercises may contain many *.exercise files and exactly one *.config file.
   * An exam needs a library of exercises with one config to compile.
 
-Examples:
+**Examples**:
+
   * A library is given in [examples/uebung](examples/uebung).
   * Some exams using this library are given in [examples](examples).
+
+**Document control**:
 
 All block of text (described in the following: LATEX, IMAGE, PLANTUML, ...)
 can be specified to be shown in both generated documents ("BOTH", default),
