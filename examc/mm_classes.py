@@ -50,7 +50,7 @@ class PExam(ModelBase):
 
     def get_additional_front_page_info(self):
         if self.additional_front_page_info is not None:
-            return self.additional_front_page_info
+            return self.additional_front_page_info.text
         else:
             return ""
 
@@ -139,6 +139,8 @@ class PImage(ModelBase):
     def __init__(self, **kwargs):
         super(PImage, self).__init__()
         self._init_xtextobj(**kwargs)
+        if self.width is None:
+            self.width=100.0
 
     def get_filename(self):
         return join(abspath(dirname(get_model(self)._tx_filename)), self.file)

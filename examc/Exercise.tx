@@ -39,3 +39,5 @@ PNewpageType: "NEWPAGE"|"NONEWPAGE";
 PSTRING: text=/(?ms)\-{4}\-*\s*\n(.*?)^\s*\-{4}\-*\s*\n/;
 MYFLOAT: /\d+(?:\.\d+)?/;
 MYINT: /\d+/;
+
+Comment: /\/\/.*$/;
