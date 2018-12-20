@@ -10,7 +10,7 @@ you can generate an exam and a solution document.
     $ examc --help
     $ examc -e examples_en/Exam01.exam
 
-Or (also executes latex and opens the PDF):    
+Or (also executes LaTeX and opens the PDF):    
     
     $ examc -x -e examples_en/Exam01.exam
 
@@ -153,3 +153,7 @@ Check code style:
 ## Setup (user)
 
 work in progress (or: see .travis.yml)
+
+You need LaTeX to compile the generated documents. Using Ubuntu I use
+
+    $ sudo apt install texlive-latex-extra texlive-latex-recommended
