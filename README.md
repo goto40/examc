@@ -13,15 +13,15 @@ Example (some pages form an exam solution):
 
 ## Features
 
-  * Collect exercises
-  * Assemble exercises in exams
+  * Collect exercises.
+  * Assemble exercises in exams.
   * Single source for solution and exam.
 
 ## Grammar / Specification format
 
   * Exams are specified in *.exam files (grammar: see [Exam.tx](examc/Exam.tx)).
-  * Exercises are specified in *.exercise files (Grammar: see [Exam.tx](examc/Exercise.tx)).
-  * Configurations (language adaptations) are stored in *.config files (Grammar: see [Exam.tx](examc/Config.tx)).
+  * Exercises are specified in *.exercise files (Grammar: see [Exercise.tx](examc/Exercise.tx)).
+  * Configurations (language adaptations) are stored in *.config files (Grammar: see [Config.tx](examc/Config.tx)).
   
 File structure:
 
