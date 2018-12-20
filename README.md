@@ -42,7 +42,7 @@ File structure:
 
 **Document control**:
 
-All block of text (described in the following: LATEX, IMAGE, PLANTUML, ...)
+All blocks of text (described in the following: LATEX, IMAGE, PLANTUML, ...)
 can be specified to be shown in both generated documents ("BOTH", default),
 in the exam version only ("EXAM"), or the solution document only ("SOLUTION").
 To specify the target document, just add, e.g., "SOLUTION" after the block name.
