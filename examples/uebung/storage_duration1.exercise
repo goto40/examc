@@ -42,7 +42,7 @@ int main() {
 	--------
 	\begin{tabularx}{\textwidth}{|m{5cm}|X|X|X|X|}
 	\hline
-	name $\rightarrow$\solution{(je 0.5 Punkte)}\newline Storag duration $\downarrow$& a & b & c und d & e \\
+	name $\rightarrow$\solution{(je 0.5 Punkte)}\newline Storage duration $\downarrow$& a & b & c und d & e \\
 	\hline
 	Static & \solution{X} & & & \solution{X} \\
 	\hline

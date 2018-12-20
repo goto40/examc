@@ -1,8 +1,87 @@
 # examc
-exam DSL compiler (exam document generator)
+Exam DSL compiler (exam document generator).
 
-(work in progress)
+## Purpose
+This DSL is used to specify exams. From a single source
+you can generate an exam and a solution document.
 
+Example (some pages form an exam):
+![](doc/images/example.png)
+
+Example (some pages form an exam solution):
+![](doc/images/example_solution.png)
+
+## Features
+
+  * Collect exercises
+  * Assemble exercises in exams
+  * Single source for solution and exam.
+
+## Grammar / Specification format
+
+  * Exams are specified in *.exam files (grammar: see [Exam.tx](examc/Exam.tx)).
+  * Exercises are specified in *.exercise files (Grammar: see [Exam.tx](examc/Exercise.tx)).
+  * Configurations (language adaptations) are stored in *.config files (Grammar: see [Exam.tx](examc/Config.tx)).
+  
+File structure:
+
+  * A library of exercises may contain many *.exercise files and exactly one *.config file.
+  * An exam needs a library of exercises with one config to compile.
+
+
+### Latex code
+
+	LATEX
+	-------
+	\vspace*{3mm}
+	What is printed?\\[10mm]
+	Line 15: \examOrSolution{\underline{\hspace*{10cm}}}{2 (0.5 Points)}\\[10mm]
+	Line 16: \examOrSolution{\underline{\hspace*{10cm}}}{5}\\[5mm]
+	------	
+
+### Images
+
+    IMAGE FILE: "img.png" WIDTH: 80percent    
+
+### PlantUML (http://www.plantUML.com)
+
+	PLANTUML
+	----------------
+	@startuml
+	note "(2 Points)" as N1
+	class P1a as "P1"
+	class P1b as "P1"
+	P1a <|-- P3
+	P1b <|-- P4
+	P2 <|-- P3
+	P2 <|-- P4
+	P3 <|-- P5
+	P4 <|-- P5
+	@enduml
+	----------------
+
+### C++ code
+
+	CODE
+	-------------
+    // TODO: define "TypesAreEqual"
+    int main() {
+        static_assert( TypesAreEqual<double, float>::result 
+                == false,  "static unit test");
+        static_assert( TypesAreEqual<float, float>::result  
+                == true,   "static unit test");
+    }
+	-------------
+
+### ASCII text
+
+	ASCII
+	---------------------
+    17
+    81
+    32 at line 11
+	--------------------
+	
 ## setup (developer)
 
 Init virtual environment:
@@ -21,4 +100,4 @@ Check code style:
 
 ## setup (user / exam designer)
 
-(TODO)
+    $ examc --help
