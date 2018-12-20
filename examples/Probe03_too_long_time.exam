@@ -2,7 +2,7 @@ EXAM Probe03 {
 	TITLE: 'Probe 03'
 	COURSE: 'Test Course'
 	DATE:  'WS17/18'
-	DURATION: 25min
+	DURATION: 28min
 	
 	EXERCISE uebung.vererbung2
 	EXERCISE uebung.funktionaufloesung1

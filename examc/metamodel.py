@@ -3,6 +3,7 @@ import textx.scoping.providers as scoping_providers
 from textx.scoping import GlobalModelRepository, MetaModelProvider
 from os.path import dirname, abspath, join
 import examc.mm_classes as cl
+import examc.validation as validation
 
 def init_metamodel(path):
     this_folder = dirname(abspath(__file__))
@@ -43,6 +44,11 @@ def init_metamodel(path):
         "*.*": global_repo_provider,
     })
 
+    mm_exam.register_obj_processors({
+        "MYFLOAT": lambda x: float(x),
+        "MYINT": lambda x: int(x),
+        "PExam": validation.check_exam
+    })
 
     mm_config = metamodel_from_file(join(this_folder, "Config.tx"),
                                       global_repository=global_repo,
