@@ -30,6 +30,7 @@ Example (some pages from an exam and its solution):
   * Exams are specified in *.exam files (grammar: see [Exam.tx](examc/Exam.tx)).
   * Exercises are specified in *.exercise files (Grammar: see [Exercise.tx](examc/Exercise.tx)).
   * Configurations (language adaptations) are stored in *.config files (Grammar: see [Config.tx](examc/Config.tx)).
+    See the example *.config files to see what you can specify.
   
 File structure:
 
