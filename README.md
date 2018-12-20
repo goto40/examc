@@ -125,7 +125,7 @@ Within the latex text, you can use
 
 ## Free space
 
-	FREESPACE EXAM {
+	FREESPACE {
 		HEIGHT: 5cm
 	}
 
