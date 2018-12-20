@@ -39,6 +39,24 @@ Examples:
   * A library is given in [examples/uebung](examples/uebung).
   * Some exams using this library are given in [examples](examples).
 
+All block of text (described in the following: LATEX, IMAGE, PLANTUML, ...)
+can be specified to be shown in both generated documents ("BOTH", default),
+in the exam version only ("EXAM"), or the solution document only ("SOLUTION").
+To specify the target document, just add, e.g., "SOLUTION" after the block name.
+
+The following example adds some free space in the 
+exam document [src-gen/Exam01.pdf](doc/Exam01.pdf) 
+and the solution text in the solution 
+document [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
+
+	FREESPACE EXAM {HEIGHT:5cm}
+	LATEX SOLUTION 
+	----------------
+	f gets a const reference to a P objekt and calls a
+	non-const method of it (setX).
+	----------------
+
+
 ### Latex code
 
 	LATEX
@@ -48,6 +66,10 @@ Examples:
 	Line 15: \examOrSolution{\underline{\hspace*{10cm}}}{2 (0.5 Points)}\\[10mm]
 	Line 16: \examOrSolution{\underline{\hspace*{10cm}}}{5}\\[5mm]
 	------	
+
+Within the latex text, you can use
+ * ```\solution{TEXT}``` to include text only shown in the solution version (in blue).
+ * ```\examOrSolution{EXAM-TEXT}{SOLUTION-TEXT}``` to specify text only for the exam/solution version.
 
 ### Images
 
@@ -91,6 +113,13 @@ Examples:
     81
     32 at line 11
 	--------------------
+
+## Free space
+
+	FREESPACE EXAM {
+		HEIGHT: 5cm
+	}
+
 	
 ## setup (developer)
 
