@@ -5,18 +5,18 @@ Exam DSL compiler (exam document generator).
 This DSL is used to specify exams. From a single source
 you can generate an exam and a solution document.
 
-Example (some pages form an exam):
-![](doc/images/example.png)
-
-Example (some pages form an exam solution):
-![](doc/images/example_solution.png)
-
 ## Usage
 
     $ examc --help
     $ examc -I examples_en -e examples_en/Exam01.exam
 
 Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
+
+Example (some pages form an exam):
+![](doc/images/example.png)
+
+Example (some pages form an exam solution):
+![](doc/images/example_solution.png)
 
 ## Features
 
