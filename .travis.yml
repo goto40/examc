@@ -1,0 +1,19 @@
+language: python
+python:
+    - "3.6"
+before_install:
+    # Installing textx etc. as a dependency
+    - cd ..
+    # stuff for the python
+    - pip install jinja2
+    - pip install arpeggio
+    - pip install pytest
+    #- sudo apt-get install -qq libmsgsl-dev
+    - git clone --depth=1 --branch=master https://github.com/igordejanovic/textX
+    - cd textX && python setup.py install
+    - cd ../examc
+install:
+    - python setup.py install
+script:
+    - py.test tests
+
