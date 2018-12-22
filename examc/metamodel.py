@@ -47,7 +47,8 @@ def init_metamodel(path):
     mm_exam.register_scope_providers({
         "*.*": global_repo_provider,
         "dummy.dummy": scoping_providers.FQNImportURI(
-            importURI_converter=name2file),
+            importURI_converter=name2file,
+            search_path=[path]),
     })
 
     mm_exam.register_obj_processors({

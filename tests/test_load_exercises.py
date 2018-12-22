@@ -23,3 +23,8 @@ def test_load_exam():
                                    join(dirname(__file__), "..",
                                         "examples", "Probe03.exam")))
     assert exam.get_points() == 22
+
+    exam = mm.model_from_file(join(dirname(__file__),
+                                   join(dirname(__file__),
+                                        "Probe03_other_location.exam")))
+    assert exam.get_points() == 22
