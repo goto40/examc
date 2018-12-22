@@ -1,5 +1,5 @@
 from textx import get_model, get_children_of_type
-from os.path import join, dirname, abspath
+from os.path import join, dirname, abspath, sep, relpath
 
 
 class ModelBase(object):
@@ -16,12 +16,26 @@ class ModelBase(object):
             if self.newpagetype is None:
                 self.newpagetype = "NEWPAGE"
 
+    def basename(self, relative_to):
+        n = relpath(get_model(self)._tx_filename,
+                    dirname(get_model(relative_to)._tx_filename))
+        return n.replace(".exercise", "").replace(sep, ".")
+
 
 class PExamContentContainer(ModelBase):
     def __init__(self, **kwargs):
         super(PExamContentContainer, self).__init__()
         self._init_xtextobj(**kwargs)
 
+
+class PExerciseRef(ModelBase):
+    def __init__(self, **kwargs):
+        super(PExerciseRef, self).__init__()
+        self._init_xtextobj(**kwargs)
+
+    def get(self):
+        assert len(self._tx_loaded_models)==1
+        return self._tx_loaded_models[0]
 
 class PExam(ModelBase):
     def __init__(self, **kwargs):
@@ -32,12 +46,12 @@ class PExam(ModelBase):
         lst = list(filter(
             lambda x: x.content.exercise is not None,
             self.exercises_or_raw_content))
-        return list(map(lambda x: x.content.exercise.ref, lst))
+        return list(map(lambda x: x.content.exercise.get(), lst))
 
     def get_exercises_and_extra_contents(self):
         def mapper(x):
             if x.content.exercise is not None:
-                return x.newpagetype, x.content.exercise.ref
+                return x.newpagetype, x.content.exercise.get()
             else:
                 return x.newpagetype, x.content.direct
         return list(map(mapper, self.exercises_or_raw_content))
@@ -109,10 +123,11 @@ class PPlantUmlContent(ModelBase):
 
     def basename(self):
         exercise = self.parent
-        group = exercise.parent
-        return "uml_{}_{}_{}".format(
-            group.name,
-            exercise.name,
+        fn = get_model(exercise)._tx_filename.\
+            replace(sep, "_").\
+            replace(".", "_")
+        return "uml_{}_{}".format(
+            fn,
             exercise.content.index(self))
 
     def render(self):

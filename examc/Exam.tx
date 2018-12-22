@@ -17,5 +17,5 @@ PExamContentContainer: (newpagetype=PNewpageType)? content=PExamContent;
 PExamContent: (direct = PLatexContent) | (exercise = PExerciseRef);
 
 PExerciseRef:
-    'EXERCISE' ref=[PExercise|FQN]
+    'EXERCISE' importURI=FQN
 ;

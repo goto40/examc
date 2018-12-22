@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE storage_duration2 {
+EXERCISE {
 	TITLE: "storage duration"
 	POINTS: 2
 	LATEX

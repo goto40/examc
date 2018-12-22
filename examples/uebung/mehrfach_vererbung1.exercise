@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE mehrfach_vererbung1 {
+EXERCISE {
 	TITLE: "Mehrfachvererbung"
 	POINTS: 4
 	

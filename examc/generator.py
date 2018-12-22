@@ -1,5 +1,6 @@
 import jinja2
 from os.path import dirname, abspath, join
+from functools import reduce
 
 
 def generate_pu_files(exam, out_dir):
@@ -38,3 +39,24 @@ xdg-open {exam.name}.pdf && \
 xdg-open {exam.name}_solution.pdf'''
     with open(out_file_name, 'w') as f:
         f.write(script)
+
+
+def generate_csv(exam, out_file_name="src-gen/out.csv"):
+    exercises = exam.get_exercises()
+
+    csv_num = "num:,"+ \
+            reduce(lambda x,y: x+ ","+ y,
+                   map(lambda x: str(x.get_num(exam)),
+                       exercises)) + "\n"
+    csv_titles = "title:,"+ \
+                 reduce(lambda x,y: x+ ","+ y,
+                        map(lambda x: x.basename(exam),
+                            exercises)) + "\n"
+    csv_points = "points:,"+ \
+                 reduce(lambda x,y: x+ ","+ y,
+                        map(lambda x: str(x.points),
+                            exercises)) + "\n"
+
+    csv_text = csv_titles + csv_num + csv_points
+    with open(out_file_name, 'w') as f:
+        f.write(csv_text)

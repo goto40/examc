@@ -1,5 +1,4 @@
-GROUP exercises;
-EXERCISE constness1 {
+EXERCISE {
 	TITLE: "Constness"
 	POINTS: 2
 	

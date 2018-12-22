@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE preprocessor1 {
+EXERCISE {
 	TITLE: "Macros"
 	POINTS: 2
 	LATEX 

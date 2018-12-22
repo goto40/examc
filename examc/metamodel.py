@@ -12,12 +12,12 @@ def init_metamodel(path):
     global_repo = GlobalModelRepository()
     global_repo_provider = scoping_providers.FQNGlobalRepo(
         glob_args={"recursive": True})
-    global_repo_provider.register_models(path+"/**/*.exercise")
     global_repo_provider.register_models(path+"/**/*.config")
 
     all_classes = [
         cl.PExam,
         cl.PExamContentContainer,
+        cl.PExerciseRef,
         cl.PExercise,
         cl.PAsciiContent,
         cl.PCodeContent,
@@ -37,12 +37,17 @@ def init_metamodel(path):
         "MYINT": lambda x: int(x),
     })
 
+    def name2file(name):
+        return name.replace(".", "/")+".exercise"
+
     mm_exam = metamodel_from_file(join(this_folder, "Exam.tx"),
                                   global_repository=global_repo,
                                   use_regexp_group=True,
                                   classes=all_classes)
     mm_exam.register_scope_providers({
         "*.*": global_repo_provider,
+        "dummy.dummy": scoping_providers.FQNImportURI(
+            importURI_converter=name2file),
     })
 
     mm_exam.register_obj_processors({

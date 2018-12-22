@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE raii1 {
+EXERCISE {
 	TITLE: "RAII"
 	POINTS: 10
 	

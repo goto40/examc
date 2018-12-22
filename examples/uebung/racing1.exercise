@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE racing1 {
+EXERCISE {
 	TITLE: "Racing Condition"
 	POINTS: 2
 	

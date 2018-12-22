@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE templates2 {
+EXERCISE {
 	TITLE: "Templates und Verschiebe Operator"
 	POINTS: 15
 	

@@ -1,21 +1,13 @@
-Model:
-    group=PGroup;
-
-PGroup:
-    'GROUP' name=ID ';'
-    exercises+=PExercise
-;
-
-
-FQN: ID('.'ID)*;
 PExercise:
-    'EXERCISE' name=ID
+    'EXERCISE'
     '{'
     'TITLE' ':' title=STRING
     'POINTS' ':' points=INT
     content+=PContent
     '}'
     ;
+
+FQN: ID('.'ID)*;
 
 PContent: PLatexContent|PPlantUmlContent|PCodeContent|PAsciiContent|PFreeSpaceContent|PImage;
 

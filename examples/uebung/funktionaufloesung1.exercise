@@ -1,5 +1,4 @@
-GROUP uebung;
-EXERCISE funktionaufloesung1 {
+EXERCISE {
 	TITLE: "Funtionsauflösung"
 	POINTS: 4
 	

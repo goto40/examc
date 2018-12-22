@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE templates1 {
+EXERCISE {
 	TITLE: "Templates: Typ-Vergleich"
 	POINTS: 3
 	

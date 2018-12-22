@@ -1,6 +1,4 @@
-GROUP uebung;
-
-EXERCISE vererbung2 {
+EXERCISE {
 	TITLE: "Vererbung"
 	POINTS: 4
 	LATEX
