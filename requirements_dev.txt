@@ -2,4 +2,4 @@ pytest
 flake8
 coverage
 jinja2
-textx
+-e git+https://github.com/igordejanovic/textX.git#egg=textX.egg
