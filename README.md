@@ -8,11 +8,11 @@ you can generate an exam and a solution document.
 ## Usage
 
     $ examc --help
-    $ examc -e examples_en/Exam01.exam
+    $ examc examples_en/Exam01.exam
 
 Or (also executes LaTeX and opens the PDF):    
     
-    $ examc -x -e examples_en/Exam01.exam
+    $ examc -x examples_en/Exam01.exam
 
 Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](doc/Exam01_solution.pdf).
 
@@ -24,6 +24,11 @@ Example (some pages from an exam and its solution):
   * Collect exercises.
   * Assemble exercises in exams.
   * Single source for solution and exam.
+
+From the single source, examc generates:
+  * An exam (PDF)
+  * A solution (PDF) - hint: place correction hints in the solution
+  * A CVS file with the individual exercises (name, #num, points; importable in Open Office Calc or Excel)
 
 ## Grammar / Specification format
 
@@ -153,12 +158,12 @@ Run examc (without installing)
 
     $ export PYTHONPATH=.
     $ python examc/console.py --help
-    $ python examc/console.py -x -e examples/Probe02.exam
+    $ python examc/console.py -x examples/Probe02.exam
 
 ## Setup (user)
 
 work in progress (or: see .travis.yml)
 
-You need LaTeX to compile the generated documents. Using Ubuntu I use
+You need LaTeX and PlantUML to compile the generated documents. Using Ubuntu I use
 
-    $ sudo apt install texlive-latex-extra texlive-latex-recommended
+    $ sudo apt install texlive-latex-extra texlive-latex-recommended plantuml

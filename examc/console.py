@@ -5,6 +5,7 @@ from examc.generator import generate_tex, generate_pu_files, \
     generate_script, generate_csv
 from os.path import join, exists, abspath, dirname
 from os import makedirs
+import sys
 
 
 def examc():
@@ -15,25 +16,23 @@ def examc():
     parser.add_argument('-o', '--out-folder', dest='out_folder',
                         default="src-gen", type=str,
                         help='out folder')
-    parser.add_argument('-e', '--exam', dest='generate_exam', type=str,
-                        default=None, help='generate exam documents')
     parser.add_argument('-x', '--execute-latex', dest='execute_latex',
                         action='store_true', default=False,
-                        help='execute latex after document generation"\
-                             "(only applicable with -e)')
+                        help='execute latex after document generation')
+    parser.add_argument(
+        'model_files', metavar='model_files', type=str, nargs='+',
+        help='model filenames')
 
     args = parser.parse_args()
-    if args.generate_exam is not None:
-        mypath, myscript = generate_exam(inpath=args.in_folder,
-                                         outpath_base=args.out_folder,
-                                         exam_fn=args.generate_exam)
-        if args.execute_latex:
-            subprocess.call(["sh", myscript], cwd=mypath)
-    elif args.list_exercises:
-        infolder = args.in_folder
-        if infolder is None:
-            infolder = "."
-        show_list(path=infolder)
+    for model_file in args.model_files:
+        try:
+            mypath, myscript = generate_exam(inpath=args.in_folder,
+                                             outpath_base=args.out_folder,
+                                             exam_fn=model_file)
+            if args.execute_latex:
+                subprocess.call(["sh", myscript], cwd=mypath)
+        except Exception as err:
+            sys.exit("in {}".format(model_file) + "\n" + str(err))
 
 
 def generate_exam(inpath, outpath_base, exam_fn):
