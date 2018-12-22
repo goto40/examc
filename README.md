@@ -48,7 +48,7 @@ From the single source, examc generates:
     * A library is given in [examples/uebung](examples/uebung).
     * Some exams using this library are given in [examples](examples).
   * English:
-    * A library is given in [examples_en/exercises_english](examples_en/exercises_english).
+    * A library is given in [examples_en/exercises_english](examples_en/exercises).
     * One exam using this library is given in [examples_en/Exam01.exam](examples_en/Exam01.exam).
 
 **Document control**:
