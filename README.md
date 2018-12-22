@@ -19,6 +19,9 @@ Output: [src-gen/Exam01.pdf](doc/Exam01.pdf) and [src-gen/Exam01_solution.pdf](d
 Example (some pages from an exam and its solution):
 ![](doc/images/example_both.png)
 
+Note: run without installing, see below ("Setup (developer)")
+
+
 ## Features
 
   * Collect exercises.
