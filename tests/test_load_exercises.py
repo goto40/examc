@@ -1,4 +1,4 @@
-from examc.metamodel import init_metamodel, get_all
+from examc.metamodel import init_metamodel
 from os.path import dirname, join
 
 

@@ -34,8 +34,9 @@ class PExerciseRef(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def get(self):
-        assert len(self._tx_loaded_models)==1
+        assert len(self._tx_loaded_models) == 1
         return self._tx_loaded_models[0]
+
 
 class PExam(ModelBase):
     def __init__(self, **kwargs):
@@ -155,7 +156,7 @@ class PImage(ModelBase):
         super(PImage, self).__init__()
         self._init_xtextobj(**kwargs)
         if self.width is None:
-            self.width=100.0
+            self.width = 100.0
 
     def get_filename(self):
         return join(abspath(dirname(get_model(self)._tx_filename)), self.file)
