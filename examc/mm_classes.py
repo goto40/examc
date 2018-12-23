@@ -44,7 +44,7 @@ class PExam(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def get_name(self):
-        return basename(get_model(self)._tx_filename)
+        return basename(get_model(self)._tx_filename).replace(".exam","")
 
     def get_exercises(self):
         lst = list(filter(
