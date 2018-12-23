@@ -173,6 +173,9 @@ the current textx version of your venv, then start
     
 After this you can copy the exe from dist/examc to whereever you want...
 
+Hint: I needed to install python3-dev for this...
+
+    sudo apt install python3-dev
 
 ## Setup (user)
 
