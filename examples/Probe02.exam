@@ -1,4 +1,4 @@
-EXAM Probe02 {
+EXAM {
 	TITLE: 'Probe 02'
 	DISABLE_NAME
 	COURSE: 'Test Course'

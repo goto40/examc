@@ -1,5 +1,5 @@
 from textx import get_model, get_children_of_type
-from os.path import join, dirname, abspath, sep, relpath
+from os.path import join, dirname, abspath, sep, relpath, basename
 
 
 class ModelBase(object):
@@ -42,6 +42,9 @@ class PExam(ModelBase):
     def __init__(self, **kwargs):
         super(PExam, self).__init__()
         self._init_xtextobj(**kwargs)
+
+    def get_name(self):
+        return basename(get_model(self)._tx_filename)
 
     def get_exercises(self):
         lst = list(filter(

@@ -1,4 +1,4 @@
-EXAM Probe01 {
+EXAM {
 	TITLE: 'Probe 01'
 	COURSE: 'Test Course'
 	DATE:  'WS17/18'

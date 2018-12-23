@@ -20,6 +20,8 @@
 \usepackage{lastpage}
 {{config.additional_latex_stuff.text}}
 
+\setlength{\headheight}{14.5pt}
+
 \setlength\parindent{0pt} % global noindent
 
 \pagestyle{fancy}
@@ -182,7 +184,7 @@
 \tiny \centering {{config.exercise}}&\tiny {{config.title}}&\tiny \centering {{config.your_points}}&\tiny \centering {{ config.max_points }} \tabularnewline
 \hline
 \rowcolor[gray]{0.99}
-\centering \bfseries {{ exercise.get_num(exam) }} & {{ exercise.title }} & \rule{0pt}{7mm} & \centering \bfseries {{ exercise.points }} {{ config.points }} \tabularnewline
+\centering \bfseries {{ exercise.get_num(exam) }} & {{exercise.title}} & \rule{0pt}{7mm} & \centering \bfseries {{ exercise.points }} {{ config.points }} \tabularnewline
 %\hline
 \end{tabularx}
 };

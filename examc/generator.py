@@ -34,12 +34,12 @@ def _generate_script(exam, out_file_name):
         for pu in exercise.get_pu_contents():
             script = script + f"plantuml {pu.basename()}.pu && \\"
     script = script + f'''
-pdflatex {exam.name}.tex && \
-pdflatex {exam.name}.tex && \
-pdflatex {exam.name}_solution.tex && \
-pdflatex {exam.name}_solution.tex
-#xdg-open {exam.name}.pdf
-#xdg-open {exam.name}_solution.pdf'''
+pdflatex {exam.get_name()}.tex && \
+pdflatex {exam.get_name()}.tex && \
+pdflatex {exam.get_name()}_solution.tex && \
+pdflatex {exam.get_name()}_solution.tex
+#xdg-open {exam.get_name()}.pdf
+#xdg-open {exam.get_name()}_solution.pdf'''
     with open(out_file_name, 'w') as f:
         f.write(script)
 
@@ -73,19 +73,19 @@ def generate_exam(inpath, outpath_base, exam_fn):
         inpath = abspath(dirname(exam_fn))
     mm, model_repo, config = init_metamodel(inpath)
     exam = mm.model_from_file(exam_fn)
-    outpath = join(outpath_base, exam.name)
+    outpath = join(outpath_base, exam.get_name())
     if not exists(outpath):
         makedirs(outpath)
 
     _generate_tex(exam, config,
-                  join(outpath, exam.name+".tex"), False)
+                  join(outpath, exam.get_name()+".tex"), False)
     _generate_tex(exam, config,
-                  join(outpath, exam.name+"_solution.tex"), True)
+                  join(outpath, exam.get_name()+"_solution.tex"), True)
     _generate_pu_files(exam, outpath)
 
     myscript = join(outpath, "generate.sh")
     _generate_script(exam, myscript)
 
-    generate_csv(exam, join(outpath, exam.name+".csv"))
+    generate_csv(exam, join(outpath, exam.get_name()+".csv"))
 
     return abspath(outpath), abspath(myscript)

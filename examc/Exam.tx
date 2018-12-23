@@ -1,7 +1,7 @@
 import Exercise
 
 PExam:
-    'EXAM' name=ID '{'
+    'EXAM' '{'
         'TITLE' ':' title=STRING
         (disableName ?= 'DISABLE_NAME')?
         'COURSE' ':' course=STRING
