@@ -10,7 +10,7 @@ you can generate an exam and a solution document.
     $ examc --help
     $ examc examples_en/Exam01.exam
 
-Or (also executes LaTeX and opens the PDF):    
+Or (also executes LaTeX and creates the PDF):    
     
     $ examc -x examples_en/Exam01.exam
 

@@ -37,9 +37,9 @@ def _generate_script(exam, out_file_name):
 pdflatex {exam.name}.tex && \
 pdflatex {exam.name}.tex && \
 pdflatex {exam.name}_solution.tex && \
-pdflatex {exam.name}_solution.tex && \
-xdg-open {exam.name}.pdf && \
-xdg-open {exam.name}_solution.pdf'''
+pdflatex {exam.name}_solution.tex
+#xdg-open {exam.name}.pdf
+#xdg-open {exam.name}_solution.pdf'''
     with open(out_file_name, 'w') as f:
         f.write(script)
 
