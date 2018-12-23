@@ -163,9 +163,22 @@ Run examc (without installing)
     $ python examc/console.py --help
     $ python examc/console.py -x examples/Probe02.exam
 
+
+### Hack to create a portable version (for your OS)
+
+If you want to freeze the current state and create an executable with
+the current textx version of your venv, then start 
+
+    ./build_my_exe_hack.sh
+    
+After this you can copy the exe from dist/examc to whereever you want...
+
+
 ## Setup (user)
 
-work in progress (or: see .travis.yml)
+Alternatives:
+ * Install via setup.py: work in progress (or: see .travis.yml)
+ * Create a portable version (see above)
 
 You need LaTeX and PlantUML to compile the generated documents. Using Ubuntu I use
 
