@@ -104,7 +104,7 @@ class PCodeContent(ModelBase):
 \\begin{{lstlisting}}[style=customcpp]
 {self.text.text}
 \\end{{lstlisting}}
-        '''
+'''
 
 
 class PAsciiContent(ModelBase):
@@ -114,10 +114,10 @@ class PAsciiContent(ModelBase):
 
     def generate(self):
         return f'''
-        \\begin{{lstlisting}}[style=customtxt]
-        {self.text.text}
-        \\end{{lstlisting}}
-                '''
+\\begin{{lstlisting}}[style=customtxt]
+{self.text.text}
+\\end{{lstlisting}}
+'''
 
 
 class PPlantUmlContent(ModelBase):
