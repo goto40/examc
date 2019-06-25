@@ -1,4 +1,5 @@
-from textx import metamodel_from_file, get_children_of_type, register_language, clear_language_registrations
+from textx import metamodel_from_file, get_children_of_type,\
+    register_language, clear_language_registrations
 import textx.scoping.providers as scoping_providers
 from textx.scoping import GlobalModelRepository
 from os.path import dirname, abspath, join
@@ -63,9 +64,10 @@ def init_metamodel(path):
                                     use_regexp_group=True)
 
     clear_language_registrations()
-    register_language("exam-exercise-lang","*.exercise", metamodel=mm_exercise)
-    register_language("exam-lang","*.exam", metamodel=mm_exam)
-    register_language("exam-config-lang","*.config", metamodel=mm_config)
+    register_language("exam-exercise-lang", "*.exercise",
+                      metamodel=mm_exercise)
+    register_language("exam-lang", "*.exam", metamodel=mm_exam)
+    register_language("exam-config-lang", "*.config", metamodel=mm_config)
 
     all_models = global_repo_provider.load_models_in_model_repo().\
         all_models
