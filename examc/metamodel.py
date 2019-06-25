@@ -1,6 +1,6 @@
-from textx import metamodel_from_file, get_children_of_type
+from textx import metamodel_from_file, get_children_of_type, register_language, clear_language_registrations
 import textx.scoping.providers as scoping_providers
-from textx.scoping import GlobalModelRepository, MetaModelProvider
+from textx.scoping import GlobalModelRepository
 from os.path import dirname, abspath, join
 import examc.mm_classes as cl
 import examc.validation as validation
@@ -27,10 +27,11 @@ def init_metamodel(path):
         cl.PPlantUmlContent
     ]
 
-    mm_exercise = metamodel_from_file(join(this_folder, "Exercise.tx"),
-                                      global_repository=global_repo,
-                                      use_regexp_group=True,
-                                      classes=all_classes)
+    mm_exercise = metamodel_from_file(
+        join(this_folder, "Exercise.tx"),
+        global_repository=global_repo,
+        use_regexp_group=True,
+        classes=all_classes)
 
     mm_exercise.register_obj_processors({
         "MYFLOAT": lambda x: float(x),
@@ -61,10 +62,10 @@ def init_metamodel(path):
                                     global_repository=global_repo,
                                     use_regexp_group=True)
 
-    MetaModelProvider.clear()
-    MetaModelProvider.add_metamodel("*.exercise", mm_exercise)
-    MetaModelProvider.add_metamodel("*.exam", mm_exam)
-    MetaModelProvider.add_metamodel("*.config", mm_config)
+    clear_language_registrations()
+    register_language("exam-exercise-lang","*.exercise", metamodel=mm_exercise)
+    register_language("exam-lang","*.exam", metamodel=mm_exam)
+    register_language("exam-config-lang","*.config", metamodel=mm_config)
 
     all_models = global_repo_provider.load_models_in_model_repo().\
         all_models
