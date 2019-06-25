@@ -8,9 +8,7 @@ before_install:
     - pip install jinja2
     - pip install arpeggio
     - pip install pytest
-    #- sudo apt-get install -qq libmsgsl-dev
-    - git clone --depth=1 --branch=master https://github.com/igordejanovic/textX
-    - cd textX && python setup.py install
+    - pip install textx
     - cd ../examc
 install:
     - python setup.py install
