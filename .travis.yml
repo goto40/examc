@@ -7,7 +7,7 @@ before_install:
     - pip install arpeggio
     - pip install pytest
     - pip install textx
-    - cd examc
+    - cd goto40/examc
 install:
     - python setup.py install
 script:
