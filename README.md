@@ -164,7 +164,7 @@ Run examc (without installing)
     $ python examc/console.py -x examples/Probe02.exam
 
 
-### Hack to create a portable version (for your OS)
+### Hack to create an executable (for your OS)
 
 If you want to freeze the current state and create an executable with
 the current textx version of your venv, then start 
