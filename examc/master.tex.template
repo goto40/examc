@@ -87,7 +87,7 @@
   xleftmargin=\parindent,
   language=C++,
   showstringspaces=false,
-  basicstyle=\scriptsize\ttfamily,
+  basicstyle=\normalsize\ttfamily,
   keywordstyle=\bfseries,%\color{green!40!black},
   commentstyle=\itshape\color{lightgray},
   identifierstyle=\ttfamily\color{blue},
@@ -130,7 +130,7 @@
   xleftmargin=\parindent,
   language={},
   showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily
+  basicstyle=\normalsize\ttfamily,
   escapechar={§},
 }
 
