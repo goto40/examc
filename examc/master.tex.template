@@ -141,7 +141,7 @@
 \definecolor{RedTypename}{RGB}{182,86,17}
 \definecolor{GreenString}{RGB}{96,172,57}
 \definecolor{PurpleKeyword}{RGB}{184,84,212}
-\definecolor{GrayComment}{RGB}{170,170,170}
+\definecolor{GrayComment}{RGB}{100,100,100}
 \definecolor{GoldDocumentation}{RGB}{180,165,45}
 \lstdefinelanguage{rust}
 {

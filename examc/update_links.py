@@ -5,7 +5,14 @@ from examc import settings
 
 maxLinkLen = 0
 
-def create_link(code: str, opts: str = "-std=c++23", stdin: str|None = None, asm: bool = False, compiler_id="gcc_trunk") -> str:
+def create_link(code: str, opts: str = "", stdin: str|None = None, asm: bool = False, compiler_id="gcc_trunk") -> str:
+  if settings.lang=='cpp':
+    lang = 'c++'
+  elif settings.lang=='rust':
+    lang = 'rust'
+  else:
+    raise Exception(f"unexpected lang {settings.lang}")
+
   if asm:
     print("ASSEMBLY!!!")
     compilers = [
@@ -20,7 +27,7 @@ def create_link(code: str, opts: str = "-std=c++23", stdin: str|None = None, asm
     "sessions": [
       {
         "id": 1,
-        "language": "c++",
+        "language": lang,
         "source": code,
         "compilers": compilers,
         "executors": [
@@ -42,6 +49,7 @@ def create_link(code: str, opts: str = "-std=c++23", stdin: str|None = None, asm
     client_config["sessions"][0]["executors"][0]["stdin"] = stdin
 
   bin_data = json.dumps(client_config).encode("ascii")
+  print(bin_data)
   #state64 = base64.b64encode(bin_data).decode('ascii')
   state64c = base64.b64encode(zlib.compress(bin_data,level=9)).decode('ascii')
 
@@ -101,8 +109,14 @@ def process(your_code: str) -> str|None:
     stdin = None
     delete_first = None
     delete_last = None
-    compiler_flags = '-std=c++23'
-    compiler_id ="gsnapshot" #"clang_trunk" #curl -sL https://compiler-explorer.org/api/compilers/c++ |grep trunk
+    compiler_flags = ''
+    if settings.lang=='cpp':
+      compiler_id ="gsnapshot" #"clang_trunk" #curl -sL https://compiler-explorer.org/api/compilers/c++ |grep trunk
+      compiler_flags = '-std=c++23'
+    elif settings.lang=='rust':
+      compiler_id ="r1850" #"clang_trunk" #curl -sL https://compiler-explorer.org/api/compilers/c++ |grep trunk
+    else:
+      raise Exception(f"unexpected lang {settings.lang}")
 
     if comment is not None:
       delete_first = re.match(r'.*delete_first\s+(\d+)', comment, re.DOTALL|re.MULTILINE)
