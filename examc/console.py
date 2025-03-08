@@ -2,7 +2,7 @@ import argparse
 import subprocess
 from examc.generator import generate_exam
 import sys
-
+from examc import settings
 
 def examc():
     parser = argparse.ArgumentParser(description='examc')
@@ -15,6 +15,9 @@ def examc():
     parser.add_argument('-x', '--execute-latex', dest='execute_latex',
                         action='store_true', default=False,
                         help='execute latex after document generation')
+    parser.add_argument('-l', '--lang', dest='lang',
+                        default="cpp",
+                        help='select language (cpp, rust)')
     parser.add_argument(
         'model_files', metavar='model_files', type=str, nargs='+',
         help='model filenames')
@@ -22,12 +25,15 @@ def examc():
     args = parser.parse_args()
     for model_file in args.model_files:
         try:
+            settings.lang = args.lang
             mypath, myscript = generate_exam(inpath=args.in_folder,
                                              outpath_base=args.out_folder,
                                              exam_fn=model_file)
             if args.execute_latex:
                 subprocess.call(["sh", myscript], cwd=mypath)
         except Exception as err:
+            print(err)
+            print(err.format_exc())
             sys.exit("in {}".format(model_file) + "\n" + str(err))
 
 

@@ -1,0 +1,37 @@
+EXERCISE {
+	TITLE: "if-else"
+	POINTS: 1
+	
+	LATEX 
+	---------------
+	The following code is given:
+	-------------------
+	
+	CODE
+	-------------------
+fn f(x: i32, s: bool) -> i32 {
+    if s { 0 } else { x*2 }
+}
+pub fn main() {
+    println!("{}", f(10,true));
+    println!("{}", f(10,false));
+    println!("{}", f(20,true));
+    println!("{}", f(20,false));
+}
+	--------------------
+
+    LATEX
+    --------------------
+    What is printed?
+    ---------------------
+
+	FREESPACE EXAM {HEIGHT:5cm}
+	LATEX SOLUTION 
+	----------------
+    0
+    20
+    0
+    40
+	----------------
+
+}

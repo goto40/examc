@@ -16,9 +16,6 @@ def init_metamodel(path):
     global_repo_provider.register_models(path+"/**/*.config")
 
     all_classes = [
-        cl.PExam,
-        cl.PExamContentContainer,
-        cl.PExerciseRef,
         cl.PExercise,
         cl.PAsciiContent,
         cl.PCodeContent,
@@ -26,6 +23,12 @@ def init_metamodel(path):
         cl.PImage,
         cl.PLatexContent,
         cl.PPlantUmlContent
+    ]
+
+    all_classes_exam = [
+        cl.PExam,
+        cl.PExamContentContainer,
+        cl.PExerciseRef,
     ]
 
     mm_exercise = metamodel_from_file(
@@ -45,7 +48,7 @@ def init_metamodel(path):
     mm_exam = metamodel_from_file(join(this_folder, "Exam.tx"),
                                   global_repository=global_repo,
                                   use_regexp_group=True,
-                                  classes=all_classes)
+                                  classes=all_classes_exam)
     mm_exam.register_scope_providers({
         "*.*": global_repo_provider,
         "dummy.dummy": scoping_providers.FQNImportURI(

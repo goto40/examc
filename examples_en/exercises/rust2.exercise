@@ -1,0 +1,26 @@
+EXERCISE {
+	TITLE: "define a function"
+	POINTS: 1
+	
+	LATEX 
+	---------------
+	Write a function \texttt{f()} ti compute the square of an i32:
+	-------------------
+	
+	CODE
+	-------------------
+// TODO
+
+pub fn main() {
+    assert_eq!( f(8), 64);
+    assert_eq!( f(3), 9);
+}
+	--------------------
+
+	FREESPACE EXAM {HEIGHT:5cm}
+	CODE SOLUTION 
+	----------------
+fn f(x: i32) -> i32 { x*x }
+	----------------
+
+}

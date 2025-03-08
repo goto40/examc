@@ -1,5 +1,5 @@
 import textx.exceptions as exceptions
-from textx.scoping.tools import get_location
+from textx import get_location
 from textx import get_children_of_type
 
 

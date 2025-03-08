@@ -1,0 +1,9 @@
+EXAM {
+	TITLE: 'TITLE'
+	COURSE: 'COURSE'
+	DATE:  'DATE'
+	DURATION: 5min
+	
+	EXERCISE exercises.rust1
+	EXERCISE exercises.rust2
+}

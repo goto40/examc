@@ -1,5 +1,6 @@
 from textx import get_model, get_children_of_type
 from os.path import join, dirname, abspath, sep, relpath, basename
+from examc import settings
 
 
 class ModelBase(object):
@@ -100,11 +101,20 @@ class PCodeContent(ModelBase):
         self._init_xtextobj(**kwargs)
 
     def generate(self):
-        return f'''
+        if settings.lang == "cpp":
+            return f'''
 \\begin{{lstlisting}}[style=customcpp]
 {self.text.text}
 \\end{{lstlisting}}
 '''
+        if settings.lang == "rust":
+            return f'''
+\\begin{{lstlisting}}[style=customrust]
+{self.text.text}
+\\end{{lstlisting}}
+'''
+        else:
+            raise Exception(f"Unknown language {settings.lang}")
 
 
 class PAsciiContent(ModelBase):
