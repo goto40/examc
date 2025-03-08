@@ -42,8 +42,8 @@
 
 \sloppy
 
-\newcommand{\play}[1]{\hfill{\color{gray}{\href{ #1 }{$\blacktriangleright$}\strut}\hspace{0.7em} } }
-\newcommand{\playsimple}[1]{ {\color{gray}{\href{ #1 }{$\blacktriangleright$}\strut} } }
+\newcommand{\play}[1]{\hfill{\color{gray}{\href{{"{#1}"}}{$\blacktriangleright$}\strut}\hspace{0.7em} } }
+\newcommand{\playsimple}[1]{ {\color{gray}{\href{{"{#1}"}}{$\blacktriangleright$}\strut} } }
 
 
 \renewcommand{\headrulewidth}{0.0pt}
