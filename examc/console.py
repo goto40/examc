@@ -15,6 +15,9 @@ def examc():
     parser.add_argument('-x', '--execute-latex', dest='execute_latex',
                         action='store_true', default=False,
                         help='execute latex after document generation')
+    parser.add_argument('-D', '--debug', dest='debug',
+                        action='store_true', default=False,
+                        help='show stacktraces')
     parser.add_argument('-l', '--lang', dest='lang',
                         default="cpp",
                         help='select language (cpp, rust)')
@@ -32,8 +35,9 @@ def examc():
             if args.execute_latex:
                 subprocess.call(["sh", myscript], cwd=mypath)
         except Exception as err:
-            print(err)
-            print(err.format_exc())
+            if args.debug:            
+                print(err)
+                print(err.format_exc())
             sys.exit("in {}".format(model_file) + "\n" + str(err))
 
 
