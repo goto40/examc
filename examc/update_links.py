@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import base64, json, sys, glob, re, os, zlib
+from examc import settings
 
 maxLinkLen = 0
 
@@ -58,7 +59,7 @@ def create_link(code: str, opts: str = "-std=c++23", stdin: str|None = None, asm
 
 def process(your_code: str) -> str|None:
   text = your_code
-  listings = list(re.finditer(r'(?:(\\begin\{lstlisting\}[^\n]*style=custom[^\n]*\n)(.*?)(§[^§]*§)?([ \t]*\n)(\\end\{lstlisting\})|((?:\\playsimple\{[^}\n]*\}([^%\n]*))?% GODBOLT))(\s*%(?:\n%|[^\n])*)?', text, re.MULTILINE|re.DOTALL))
+  listings = list(re.finditer(r'(?:(\\begin\{lstlisting\}[^\n]*style=custom'+settings.lang+r'[^\n]*\n)(.*?)(§[^§]*§)?([ \t]*\n)(\\end\{lstlisting\})|((?:\\playsimple\{[^}\n]*\}([^%\n]*))?% GODBOLT))(\s*%(?:\n%|[^\n])*)?', text, re.MULTILINE|re.DOTALL))
   previous_code = ''
   new_text = ''
   pos = 0
