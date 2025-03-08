@@ -1,8 +1,13 @@
 \documentclass[a4paper,12pt,twoside]{article}
 \usepackage[inner=3cm,outer=2cm,top=2cm,bottom=2cm,includefoot]{geometry}
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{wasysym}
 \usepackage{multicol}
 \usepackage{color}
@@ -36,6 +41,10 @@
 \rfoot{\footnotesize \itshape {{config.page}}: \thepage /\pageref{LastPage}}
 
 \sloppy
+
+\newcommand{\play}[1]{\hfill{\color{gray}{\href{ #1 }{$\blacktriangleright$}\strut}\hspace{0.7em} } }
+\newcommand{\playsimple}[1]{ {\color{gray}{\href{ #1 }{$\blacktriangleright$}\strut} } }
+
 
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -78,14 +87,19 @@
   xleftmargin=\parindent,
   language=C++,
   showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily,
+  basicstyle=\scriptsize\ttfamily,
   keywordstyle=\bfseries,%\color{green!40!black},
-  commentstyle=\itshape\color{gray},
-  identifierstyle=\itshape,%\color{blue},
-  stringstyle=\color{gray},
+  commentstyle=\itshape\color{lightgray},
+  identifierstyle=\ttfamily\color{blue},
+  stringstyle=\color{strgreen},
+  numberstyle=\tiny\color{gray},
   xleftmargin=10mm,
+  columns=fullflexible,
+  keepspaces=true,
+  inputencoding=utf8,
+  extendedchars=true,
   %framexleftmargin=8mm,
-  basicstyle=\normalsize\ttfamily
+  escapechar={§},
 }
 \lstdefinestyle{customrust}{
   belowcaptionskip=1\baselineskip,
@@ -104,6 +118,8 @@
   xleftmargin=10mm,
   columns=fullflexible,
   keepspaces=true,
+  inputencoding=utf8,
+  extendedchars=true,
   %framexleftmargin=8mm,
   escapechar={§},
 }
@@ -115,6 +131,7 @@
   language={},
   showstringspaces=false,
   basicstyle=\footnotesize\ttfamily
+  escapechar={§},
 }
 
 % rust code

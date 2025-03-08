@@ -4,7 +4,8 @@ from functools import reduce
 from os import makedirs
 from os.path import exists
 from examc.metamodel import init_metamodel
-
+from examc import settings
+from examc.update_links import process
 
 def _generate_pu_files(exam, out_dir):
     for exercise in exam.get_exercises():
@@ -23,9 +24,12 @@ def _generate_tex(exam, config, out_file_name="src-gen/out.tex",
         lstrip_blocks=True)
     template = jinja_env.get_template('master.tex.template')
     with open(out_file_name, 'w') as f:
-        f.write(template.render(exam=exam, config=config,
-                                generate_solution=generate_solution,
-                                solution=str(generate_solution).lower()))
+        content = template.render(exam=exam, config=config,
+                                  generate_solution=generate_solution,
+                                  solution=str(generate_solution).lower())
+        if settings.godbolt:
+            content = process(content)
+        f.write(content)
 
 
 def _generate_script(exam, out_file_name):

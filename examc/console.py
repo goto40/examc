@@ -18,6 +18,9 @@ def examc():
     parser.add_argument('-D', '--debug', dest='debug',
                         action='store_true', default=False,
                         help='show stacktraces')
+    parser.add_argument('-G', '--godbolt', dest='godbolt',
+                        action='store_true', default=False,
+                        help='add godbolt links')
     parser.add_argument('-l', '--lang', dest='lang',
                         default="cpp",
                         help='select language (cpp, rust)')
@@ -29,6 +32,7 @@ def examc():
     for model_file in args.model_files:
         try:
             settings.lang = args.lang
+            settings.godbolt = args.godbolt
             mypath, myscript = generate_exam(inpath=args.in_folder,
                                              outpath_base=args.out_folder,
                                              exam_fn=model_file)
