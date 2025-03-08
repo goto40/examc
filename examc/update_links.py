@@ -58,6 +58,7 @@ def create_link(code: str, opts: str = "-std=c++23", stdin: str|None = None, asm
   return f"https://godbolt.org/clientstate/{state64c}"
 
 def process(your_code: str) -> str|None:
+  your_code = your_code.replace('\r\n','\n')
   text = your_code
   listings = list(re.finditer(r'(?:(\\begin\{lstlisting\}[^\n]*style=custom'+settings.lang+r'[^\n]*\n)(.*?)(§[^§]*§)?([ \t]*\n)(\\end\{lstlisting\})|((?:\\playsimple\{[^}\n]*\}([^%\n]*))?% GODBOLT))(\s*%(?:\n%|[^\n])*)?', text, re.MULTILINE|re.DOTALL))
   previous_code = ''
@@ -68,9 +69,9 @@ def process(your_code: str) -> str|None:
     new_text += text[pos:lst.start()]
     pos = lst.end()
     start = lst.group(1)
-    code1 = lst.group(2)
+    code1 = lst.group(2).rstrip()
     postfix = lst.group(3)
-    code2 = lst.group(4)
+    code2 = lst.group(4).rstrip()
     if code1 is not None and code2 is not None:
       code = code1+code2
       orig_code1 = code1
